@@ -1,0 +1,9 @@
+.particles-container {
+  /* Make the particles canvas cover the viewport and sit behind content */
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none; /* allow interactions through the background */
+  z-index: 0;
+}
