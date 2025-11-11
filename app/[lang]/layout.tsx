@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
+import "../globals.css";
 import Particles from "@/components/Particles";
+import type { Lang } from "@/types/languages";
+import { getDictionary } from "./dictionaries";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,18 +15,35 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Sharexam",
-  description: "Professional community for sharing exams",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: Lang }>;
+}): Promise<Metadata> {
+  const lang = (await params).lang;
+  const dict = await getDictionary(lang);
 
-export default function RootLayout({
+  return {
+    title: "Sharexam",
+    description:
+      dict.header.description || "Professional community for sharing exams",
+    alternates: {
+      canonical: "/",
+      languages: {
+        [lang]: `/${lang}`,
+      },
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params,
+}: Readonly<{ children: React.ReactNode; params: Promise<{ lang: Lang }> }>) {
+  const { lang } = await params;
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
