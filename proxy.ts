@@ -27,7 +27,7 @@ function getPreferredLocale(req: NextRequest): string {
   return "en";
 }
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
   const url = req.nextUrl.clone();
   const pathname = url.pathname;
   // If the path already starts with a supported locale, don't redirect
