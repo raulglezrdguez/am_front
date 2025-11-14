@@ -24,6 +24,17 @@ export type Dictionary = {
     accountExistsError: string;
     popupBlockedError: string;
     googleLoginError: string;
+    noAccountText: string;
+    registerLinkText: string;
+  };
+  register: {
+    passwordDontMatch: string;
+    accountExistsError: string;
+    passwordTooWeek: string;
+    registrationError: string;
+    title: string;
+    confirmPasswordPlaceholder: string;
+    createAccount: string;
   };
   loading: string;
 };
