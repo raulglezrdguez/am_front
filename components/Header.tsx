@@ -75,19 +75,19 @@ function Header({}) {
 
         <div className="hidden md:flex space-x-6">
           <Link
-            href={"#exams"}
+            href={`/${lang}/exams`}
             className="text-white font-medium transition-all duration-300 hover:text-green-600 cursor-pointer"
           >
             {dict?.header.exam || "Exams"}
           </Link>
           <Link
-            href={"#patients"}
+            href={`/${lang}/patients`}
             className="text-white font-medium transition-all duration-300 hover:text-green-600 cursor-pointer"
           >
             {dict?.header.patient || "Patients"}
           </Link>
           <Link
-            href={"#stats"}
+            href={`/${lang}/stats`}
             className="text-white font-medium transition-all duration-300 hover:text-green-600 cursor-pointer"
           >
             {dict?.header.stat || "Stats"}
