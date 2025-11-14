@@ -2,11 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  signInWithEmailAndPassword,
-  UserCredential,
-  getRedirectResult,
-} from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useParams } from "next/navigation";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
@@ -25,7 +21,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const { setUser, isAuthenticated } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
 
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
