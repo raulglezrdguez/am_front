@@ -19,7 +19,18 @@
     "error": "Erreur de connexion",
     "accountExistsError": "Un compte existe déjà avec cet e-mail",
     "popupBlockedError": "La fenêtre contextuelle a été bloquée par le navigateur",
-    "googleLoginError": "Erreur de connexion avec Google"
+    "googleLoginError": "Erreur de connexion avec Google",
+    "noAccountText": "Pas de compte ?",
+    "registerLinkText": "S'inscrire"
+  },
+  "register": {
+    "passwordDontMatch": "Les mots de passe ne correspondent pas",
+    "accountExistsError": "Un compte existe déjà avec cet e-mail",
+    "passwordTooWeek": "Le mot de passe est trop faible",
+    "registrationError": "Erreur d'inscription",
+    "title": "Enregistrer l'utilisateur",
+    "confirmPasswordPlaceholder": "Confirmer le mot de passe",
+    "createAccount": "Créer un compte"
   },
   "loading": "Chargement..."
 }

@@ -19,7 +19,18 @@
     "error": "Errore di accesso",
     "accountExistsError": "Esiste già un account con questa email",
     "popupBlockedError": "Il popup è stato bloccato dal browser",
-    "googleLoginError": "Errore di accesso con Google"
+    "googleLoginError": "Errore di accesso con Google",
+    "noAccountText": "Non hai un account?",
+    "registerLinkText": "Registrati"
+  },
+  "register": {
+    "passwordDontMatch": "Le password non coincidono",
+    "accountExistsError": "Esiste già un account con questa email",
+    "passwordTooWeek": "La password è troppo debole",
+    "registrationError": "Errore di registrazione",
+    "title": "Registra utente",
+    "confirmPasswordPlaceholder": "Conferma password",
+    "createAccount": "Crea account"
   },
   "loading": "Caricamento..."
 }

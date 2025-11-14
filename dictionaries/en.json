@@ -19,7 +19,18 @@
     "error": "Error signing in",
     "accountExistsError": "An account already exists with this email",
     "popupBlockedError": "The popup was blocked by the browser",
-    "googleLoginError": "Error signing in with Google"
+    "googleLoginError": "Error signing in with Google",
+    "noAccountText": "Don't have an account?",
+    "registerLinkText": "Register"
+  },
+  "register": {
+    "passwordDontMatch": "Passwords do not match",
+    "accountExistsError": "An account already exists with this email",
+    "passwordTooWeek": "Password is too weak",
+    "registrationError": "Registration error",
+    "title": "Register user",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "createAccount": "Create account"
   },
   "loading": "Loading..."
 }

@@ -19,7 +19,18 @@
     "error": "Error al iniciar sesión",
     "accountExistsError": "Ya existe una cuenta con este correo",
     "popupBlockedError": "El popup fue bloqueado por el navegador",
-    "googleLoginError": "Error al iniciar con Google"
+    "googleLoginError": "Error al iniciar con Google",
+    "noAccountText": "¿No tienes cuenta?",
+    "registerLinkText": "Regístrate"
+  },
+  "register": {
+    "passwordDontMatch": "Las contraseñas no coinciden",
+    "accountExistsError": "Ya existe una cuenta con este correo electrónico",
+    "passwordTooWeek": "La contraseña es demasiado débil",
+    "registrationError": "Error de registro",
+    "title": "Registrar usuario",
+    "confirmPasswordPlaceholder": "Confirmar contraseña",
+    "createAccount": "Crear cuenta"
   },
   "loading": "Cargando..."
 }

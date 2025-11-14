@@ -19,7 +19,18 @@
     "error": "Fehler bei der Anmeldung",
     "accountExistsError": "Ein Konto mit dieser E-Mail existiert bereits",
     "popupBlockedError": "Das Popup wurde vom Browser blockiert",
-    "googleLoginError": "Fehler bei der Anmeldung mit Google"
+    "googleLoginError": "Fehler bei der Anmeldung mit Google",
+    "noAccountText": "Noch kein Konto?",
+    "registerLinkText": "Registrieren"
+  },
+  "register": {
+    "passwordDontMatch": "Die Passwörter stimmen nicht überein",
+    "accountExistsError": "Ein Konto existiert bereits mit dieser E-Mail",
+    "passwordTooWeek": "Das Passwort ist zu schwach",
+    "registrationError": "Registrierungsfehler",
+    "title": "Benutzer registrieren",
+    "confirmPasswordPlaceholder": "Passwort bestätigen",
+    "createAccount": "Konto erstellen"
   },
   "loading": "Wird geladen..."
 }
