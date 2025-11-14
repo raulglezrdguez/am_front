@@ -1,5 +1,25 @@
 {
-  "header": {
+  "metadata": {
     "description": "Professional community for sharing exams"
-  }
+  },
+  "header": {
+    "exam": "Exams",
+    "patient": "Patients",
+    "stat": "Statistics",
+    "auth": "Authentication",
+    "closeSession": "Sign out"
+  },
+  "login": {
+    "title": "Sign in",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "emailLoginButton": "Sign in with email",
+    "orLoginWith": "Or continue with",
+    "googleLoginButton": "Continue with Google",
+    "error": "Error signing in",
+    "accountExistsError": "An account already exists with this email",
+    "popupBlockedError": "The popup was blocked by the browser",
+    "googleLoginError": "Error signing in with Google"
+  },
+  "loading": "Loading..."
 }

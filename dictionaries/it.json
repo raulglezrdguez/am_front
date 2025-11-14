@@ -1,5 +1,25 @@
 {
-  "header": {
+  "metadata": {
     "description": "Comunità professionale per la condivisione degli esami"
-  }
+  },
+  "header": {
+    "exam": "Esami",
+    "patient": "Pazienti",
+    "stat": "Statistiche",
+    "auth": "Autenticazione",
+    "closeSession": "Esci"
+  },
+  "login": {
+    "title": "Accedi",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "emailLoginButton": "Accedi con l'email",
+    "orLoginWith": "O continua con",
+    "googleLoginButton": "Continua con Google",
+    "error": "Errore di accesso",
+    "accountExistsError": "Esiste già un account con questa email",
+    "popupBlockedError": "Il popup è stato bloccato dal browser",
+    "googleLoginError": "Errore di accesso con Google"
+  },
+  "loading": "Caricamento..."
 }

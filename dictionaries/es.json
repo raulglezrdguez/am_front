@@ -1,5 +1,25 @@
 {
-  "header": {
+  "metadata": {
     "description": "Comunidad profesional para compartir exámenes"
-  }
+  },
+  "header": {
+    "exam": "Exámenes",
+    "patient": "Pacientes",
+    "stat": "Estadisticas",
+    "auth": "Autenticación",
+    "closeSession": "Cerrar sesión"
+  },
+  "login": {
+    "title": "Iniciar sesión",
+    "emailPlaceholder": "Correo electrónico",
+    "passwordPlaceholder": "Contraseña",
+    "emailLoginButton": "Iniciar con correo electrónico",
+    "orLoginWith": "O continue con",
+    "googleLoginButton": "Continuar con Google",
+    "error": "Error al iniciar sesión",
+    "accountExistsError": "Ya existe una cuenta con este correo",
+    "popupBlockedError": "El popup fue bloqueado por el navegador",
+    "googleLoginError": "Error al iniciar con Google"
+  },
+  "loading": "Cargando..."
 }

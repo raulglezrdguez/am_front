@@ -1,5 +1,25 @@
 {
-  "header": {
+  "metadata": {
     "description": "Professionelle Community zum Austausch von Prüfungen"
-  }
+  },
+  "header": {
+    "exam": "Untersuchungen",
+    "patient": "Patienten",
+    "stat": "Statistiken",
+    "auth": "Authentifizierung",
+    "closeSession": "Abmelden"
+  },
+  "login": {
+    "title": "Anmelden",
+    "emailPlaceholder": "E-Mail",
+    "passwordPlaceholder": "Passwort",
+    "emailLoginButton": "Mit E-Mail anmelden",
+    "orLoginWith": "Oder weiter mit",
+    "googleLoginButton": "Weiter mit Google",
+    "error": "Fehler bei der Anmeldung",
+    "accountExistsError": "Ein Konto mit dieser E-Mail existiert bereits",
+    "popupBlockedError": "Das Popup wurde vom Browser blockiert",
+    "googleLoginError": "Fehler bei der Anmeldung mit Google"
+  },
+  "loading": "Wird geladen..."
 }

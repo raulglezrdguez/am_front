@@ -1,5 +1,25 @@
 {
-  "header": {
+  "metadata": {
     "description": "Communauté professionnelle pour le partage d'examens"
-  }
+  },
+  "header": {
+    "exam": "Examens",
+    "patient": "Patients",
+    "stat": "Statistiques",
+    "auth": "Authentification",
+    "closeSession": "Se déconnecter"
+  },
+  "login": {
+    "title": "Se connecter",
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Mot de passe",
+    "emailLoginButton": "Se connecter avec l'e-mail",
+    "orLoginWith": "Ou continuer avec",
+    "googleLoginButton": "Continuer avec Google",
+    "error": "Erreur de connexion",
+    "accountExistsError": "Un compte existe déjà avec cet e-mail",
+    "popupBlockedError": "La fenêtre contextuelle a été bloquée par le navigateur",
+    "googleLoginError": "Erreur de connexion avec Google"
+  },
+  "loading": "Chargement..."
 }
