@@ -162,7 +162,7 @@ function Header({}) {
           ) : (
             <div className="flex items-center gap-3 ml-10 md:ml-20">
               <Link
-                href={`${lang}/login`}
+                href={`/${lang}/login`}
                 className="text-white font-medium transition-all duration-300 hover:text-green-600 cursor-pointer"
               >
                 {dict?.header.auth || "Auth"}
