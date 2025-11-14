@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useParams } from "next/navigation";
@@ -139,6 +140,18 @@ export default function LoginPage() {
               : dict?.login.emailLoginButton || "Login"}
           </button>
         </form>
+
+        <div className="text-center text-sm text-gray-300">
+          <span>
+            {dict?.login.noAccountText || "Don't have an account?"}{" "}
+            <Link
+              href={`/${(params?.lang as string) || "en"}/register`}
+              className="text-green-400 hover:underline"
+            >
+              {dict?.login.registerLinkText || "Register"}
+            </Link>
+          </span>
+        </div>
 
         <div className="relative">
           <div className="absolute inset-0 flex items-center">
