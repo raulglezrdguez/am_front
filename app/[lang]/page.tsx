@@ -12,7 +12,10 @@ export default async function Home({
   return (
     <div className="flex min-h-screen items-center justify-center font-sans text-white">
       <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 sm:items-start">
-        <p>{dict.header.description}</p>
+        <p>
+          {dict.metadata.description} {dict.metadata.description}{" "}
+          {dict.metadata.description} {dict.metadata.description}
+        </p>
       </main>
     </div>
   );
