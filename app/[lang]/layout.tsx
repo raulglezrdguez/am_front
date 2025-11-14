@@ -4,6 +4,8 @@ import "../globals.css";
 import Particles from "@/components/Particles";
 import type { Lang } from "@/types/languages";
 import { getDictionary } from "./dictionaries";
+import Header from "@/components/Header";
+import AuthProvider from "@/components/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +28,7 @@ export async function generateMetadata({
   return {
     title: "Sharexam",
     description:
-      dict.header.description || "Professional community for sharing exams",
+      dict.metadata.description || "Professional community for sharing exams",
     alternates: {
       canonical: "/",
       languages: {
@@ -59,7 +61,12 @@ export default async function RootLayout({
           className="bg-black"
         />
 
-        <div className="relative z-10">{children}</div>
+        <AuthProvider>
+          <div className="relative z-10 text-white">
+            {<Header />}
+            {children}
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
