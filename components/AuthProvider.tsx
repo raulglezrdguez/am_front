@@ -17,9 +17,19 @@ export default function AuthProvider({
     // Hydrate the store first
     useAuthStore.persist.rehydrate();
 
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
+
+        // Get the Firebase ID token
+        const token = await user.getIdToken();
+
+        // Create session cookie via API route
+        await fetch("/api/auth/session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
       } else {
         clearUser();
       }
