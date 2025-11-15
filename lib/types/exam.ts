@@ -1,0 +1,67 @@
+import { User } from "./user";
+import { Answer, Operator } from "./exam_enums";
+
+export type CreateExamInput = {
+  title: string;
+  subtitle: string;
+  instructions: string;
+  description: string;
+  author: string;
+  year: number;
+  public: boolean;
+  expression?: ExpressionInput[];
+  questions?: QuestionInput[];
+};
+
+export type UpdateExamPropertiesInput = {
+  title?: string;
+  subtitle?: string;
+  instructions?: string;
+  description?: string;
+  author?: string;
+  year?: number;
+  public?: boolean;
+};
+
+export type ExpressionInput = {
+  id: string;
+  operator: Operator;
+  value: string | boolean | number;
+  label: string;
+  reference?: string;
+  variable: string;
+};
+
+export type AnswerOptionInput = {
+  id: string;
+  value: string;
+  content: string;
+};
+
+export type QuestionInput = {
+  id: string;
+  text: string;
+  expression: ExpressionInput;
+  answer: Answer;
+  reference?: string;
+  answers?: AnswerOptionInput[];
+};
+
+export interface Exam {
+  _id: string;
+  title: string;
+  subtitle: string;
+  instructions: string;
+  description: string;
+  author: User;
+  year: number;
+  public: boolean;
+  expression: ExpressionInput[];
+  questions: QuestionInput[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ExamsResponse {
+  exams: Exam[];
+}
