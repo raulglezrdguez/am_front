@@ -6,6 +6,7 @@ import type { Lang } from "@/types/languages";
 import { getDictionary } from "./dictionaries";
 import Header from "@/components/Header";
 import AuthProvider from "@/components/AuthProvider";
+import RequireAuth from "@/components/RequireAuth";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,10 +63,12 @@ export default async function RootLayout({
         />
 
         <AuthProvider>
-          <div className="relative z-10 text-white">
-            {<Header />}
-            {children}
-          </div>
+          <RequireAuth lang={lang}>
+            <div className="relative z-10 text-white">
+              {<Header />}
+              {children}
+            </div>
+          </RequireAuth>
         </AuthProvider>
       </body>
     </html>
