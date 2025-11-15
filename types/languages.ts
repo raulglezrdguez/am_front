@@ -36,5 +36,10 @@ export type Dictionary = {
     confirmPasswordPlaceholder: string;
     createAccount: string;
   };
+  exams: {
+    title: string;
+    emptyExams: string;
+    newExam: string;
+  };
   loading: string;
 };

@@ -32,5 +32,10 @@
     "confirmPasswordPlaceholder": "Conferma password",
     "createAccount": "Crea account"
   },
+  "exams": {
+    "title": "Elenco degli esami",
+    "emptyExams": "Nessun esame disponibile",
+    "newExam": "Crea esame"
+  },
   "loading": "Caricamento..."
 }

@@ -32,5 +32,10 @@
     "confirmPasswordPlaceholder": "Confirm password",
     "createAccount": "Create account"
   },
+  "exams": {
+    "title": "List of exams",
+    "emptyExams": "No exams available",
+    "newExam": "Create exam"
+  },
   "loading": "Loading..."
 }
