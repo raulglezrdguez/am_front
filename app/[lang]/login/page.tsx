@@ -8,12 +8,11 @@ import { useParams } from "next/navigation";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 import { auth } from "@/lib/firebase/config";
-import { Dictionary, Lang } from "@/types/languages";
-import { getDictionary } from "../dictionaries";
 import { useAuthStore } from "@/lib/stores/user";
+import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function LoginPage() {
-  const [dict, setDict] = useState<Dictionary | null>(null);
+  const { dict } = useDictionary();
   const router = useRouter();
   const params = useParams();
 
@@ -25,40 +24,6 @@ export default function LoginPage() {
   const { isAuthenticated } = useAuthStore();
 
   const [signInWithGoogle] = useSignInWithGoogle(auth);
-
-  useEffect(() => {
-    const getDict = async (lang: Lang) => {
-      const d = await getDictionary(lang);
-      setDict(d);
-    };
-
-    if (params && (params.lang as Lang)) {
-      getDict(params.lang as Lang);
-    }
-  }, [params]);
-
-  // useEffect(() => {
-  //   // Handle redirect result from Google Sign-In
-  //   const handleRedirectResult = async () => {
-  //     try {
-  //       const result = await getRedirectResult(auth);
-  //       if (result) {
-  //         setUser(result.user);
-  //         // Don't manually set user - AuthProvider will handle it
-  //         // Just redirect to home page
-  //         router.push(`/${params.lang}`);
-  //         return;
-  //       }
-  //     } catch (error) {
-  //       console.error("Error handling redirect result:", error);
-  //       setError(
-  //         dict?.login.googleLoginError || "Error signing in with Google"
-  //       );
-  //     }
-  //   };
-
-  //   handleRedirectResult();
-  // }, [router, params.lang, dict, setUser]);
 
   useEffect(() => {
     if (isAuthenticated) {

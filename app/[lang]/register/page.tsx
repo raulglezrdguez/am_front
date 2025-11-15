@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { useParams } from "next/navigation";
 import { auth } from "@/lib/firebase/config";
-import { Dictionary, Lang } from "@/types/languages";
-import { getDictionary } from "../dictionaries";
 import { useAuthStore } from "@/lib/stores/user";
+import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function RegisterPage() {
-  const [dict, setDict] = useState<Dictionary | null>(null);
+  const { dict } = useDictionary();
   const router = useRouter();
   const params = useParams();
 
@@ -21,17 +20,6 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
 
   const { setUser } = useAuthStore();
-
-  useEffect(() => {
-    const getDict = async (lang: Lang) => {
-      const d = await getDictionary(lang);
-      setDict(d);
-    };
-
-    if (params && (params.lang as Lang)) {
-      getDict(params.lang as Lang);
-    }
-  }, [params]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
