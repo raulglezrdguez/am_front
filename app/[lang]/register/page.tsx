@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { useParams } from "next/navigation";
@@ -20,6 +20,13 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
 
   const { setUser } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push(`/${params.lang}`);
+    }
+  }, [isAuthenticated, params.lang, router]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -34,7 +41,7 @@ export default function RegisterPage() {
       const userCredential: UserCredential =
         await createUserWithEmailAndPassword(auth, email, password);
       setUser(userCredential.user);
-      router.push(`/${params?.lang}`);
+      // Note: redirection will be handled by useEffect above
     } catch (err: unknown) {
       const code = (err as { code?: string }).code;
       if (code === "auth/email-already-in-use") {
@@ -109,3 +116,39 @@ export default function RegisterPage() {
     </div>
   );
 }
+
+/**
+ * 
+ * "use client";
+
+import { useDictionary } from "@/lib/hooks/useDictionary";
+import { useAuthStore } from "@/lib/stores/user";
+import { useEffect, useState } from "react";
+
+export default function ExamsPage() {
+  const { dict } = useDictionary();
+  const user = useAuthStore((state) => state.user);
+  const [exams, setExams] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchExams = async () => {
+      const token = await user?.getIdToken(); // Firebase Auth token
+      
+      // Usa apolloServerClient o cliente con contexto token
+      const { data } = await apolloServerClient.query({
+        query: GET_EXAMS,
+        context: { token },
+      });
+      
+      setExams(data?.exams || []);
+      setLoading(false);
+    };
+
+    if (user) fetchExams();
+  }, [user]);
+
+  if (loading) return <div>Loading...</div>;
+  return <ExamsList exams={exams} />;
+}
+ */
