@@ -67,7 +67,7 @@ export default function RegisterPage() {
           </h2>
         </div>
 
-        {error && <ErrorMessage error={error} />}
+        {error && <ErrorMessage error={error} onClose={() => setError("")} />}
 
         <form className="mt-8 space-y-6" onSubmit={handleRegister}>
           <div className="rounded-md shadow-sm -space-y-px">
