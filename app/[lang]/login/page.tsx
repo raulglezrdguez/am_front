@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { useParams } from "next/navigation";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 
 import { auth } from "@/lib/firebase/config";
@@ -12,9 +11,8 @@ import { useAuthStore } from "@/lib/stores/user";
 import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function LoginPage() {
-  const { dict } = useDictionary();
+  const { dict, lang } = useDictionary();
   const router = useRouter();
-  const params = useParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -27,9 +25,9 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push(`/${params.lang}`);
+      router.push(`/${lang}`);
     }
-  }, [isAuthenticated, router, params.lang]);
+  }, [isAuthenticated, router, lang]);
 
   const handleEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -110,7 +108,7 @@ export default function LoginPage() {
           <span>
             {dict?.login.noAccountText || "Don't have an account?"}{" "}
             <Link
-              href={`/${(params?.lang as string) || "en"}/register`}
+              href={`/${(lang as string) || "en"}/register`}
               className="text-green-400 hover:underline"
             >
               {dict?.login.registerLinkText || "Register"}

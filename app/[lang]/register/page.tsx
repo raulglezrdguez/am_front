@@ -3,15 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
-import { useParams } from "next/navigation";
 import { auth } from "@/lib/firebase/config";
 import { useAuthStore } from "@/lib/stores/user";
 import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function RegisterPage() {
-  const { dict } = useDictionary();
+  const { dict, lang } = useDictionary();
   const router = useRouter();
-  const params = useParams();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,9 +22,9 @@ export default function RegisterPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push(`/${params.lang}`);
+      router.push(`/${lang}`);
     }
-  }, [isAuthenticated, params.lang, router]);
+  }, [isAuthenticated, lang, router]);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();

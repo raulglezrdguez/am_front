@@ -7,6 +7,7 @@ import { getDictionary } from "@/app/[lang]/dictionaries";
 
 export default function useDictionary() {
   const [dict, setDict] = useState<Dictionary | null>(null);
+  const [lang, setLang] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const params = useParams();
 
@@ -19,6 +20,7 @@ export default function useDictionary() {
         const d = await getDictionary(lang);
         if (!mounted) return;
         setDict(d);
+        setLang(lang);
       } catch (err) {
         console.error("Error loading dictionary:", err);
       } finally {
@@ -38,5 +40,5 @@ export default function useDictionary() {
     };
   }, [params]);
 
-  return { dict, loading } as const;
+  return { dict, loading, lang } as const;
 }
