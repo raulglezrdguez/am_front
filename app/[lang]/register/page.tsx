@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, UserCredential } from "firebase/auth";
 import { auth } from "@/lib/firebase/config";
 import { useAuthStore } from "@/lib/stores/user";
 import useDictionary from "@/lib/hooks/useDictionary";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default function RegisterPage() {
   const { dict, lang } = useDictionary();
@@ -66,11 +67,7 @@ export default function RegisterPage() {
           </h2>
         </div>
 
-        {error && (
-          <div className="bg-white/80 border border-red-200 text-red-700 font-light px-4 py-3 rounded">
-            {error}
-          </div>
-        )}
+        {error && <ErrorMessage error={error} />}
 
         <form className="mt-8 space-y-6" onSubmit={handleRegister}>
           <div className="rounded-md shadow-sm -space-y-px">
