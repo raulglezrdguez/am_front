@@ -4,7 +4,7 @@ import Link from "next/link";
 import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function Header() {
-  const { dict, lang } = useDictionary();
+  const { dict } = useDictionary();
 
   return (
     <div className="flex flex-col justify-between items-center mb-6">
@@ -12,7 +12,7 @@ export default function Header() {
         {dict?.exams.title || "Exams"}
       </h1>
       <Link
-        href={`${lang}/exams/new`}
+        href={"exams/new"}
         className="px-4 py-2 bg-green-600/50 text-green-100 rounded-lg hover:bg-green-700 flex items-center gap-2"
       >
         <svg
