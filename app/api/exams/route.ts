@@ -2,7 +2,6 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 
 import { createServerApolloClient } from "@/lib/services/graphql/serverClient";
-// import { adminAuth } from "@/lib/firebase/admin";
 import { CreateExamInput } from "@/lib/types/exam";
 import {
   CREATE_EXAM_MUTATION,
@@ -66,8 +65,7 @@ export async function POST(request: NextRequest) {
       questions: body.questions || [],
     };
 
-    // Create exam via GraphQL (pass undefined as token; session is verified above)
-    const apolloClient = createServerApolloClient(undefined);
+    const apolloClient = createServerApolloClient(sessionCookie);
     const result = await apolloClient.mutate({
       mutation: CREATE_EXAM_MUTATION,
       variables: { input: examInput },
