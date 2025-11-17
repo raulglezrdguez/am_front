@@ -6,7 +6,6 @@ export type CreateExamInput = {
   subtitle: string;
   instructions: string;
   description: string;
-  author: string;
   year: number;
   public: boolean;
   expression?: ExpressionInput[];
