@@ -2,12 +2,11 @@
 "use client";
 
 import { useState } from "react";
-import { FaTrash, FaSave, FaSpinner, FaPlusSquare } from "react-icons/fa";
+import { FaSave, FaSpinner, FaPlusSquare } from "react-icons/fa";
 
 import ErrorMessage from "@/components/ErrorMessage";
-import { Exam, ExpressionInput, QuestionInput } from "@/lib/types/exam";
+import { Exam, QuestionInput } from "@/lib/types/exam";
 import { Answer, Operator } from "@/lib/types/exam_enums";
-import { displayValue, parseValue } from "@/lib/utils/expression";
 import Expressions from "./Expressions";
 import { toast } from "sonner";
 
@@ -36,35 +35,9 @@ export default function ExamEditor({
   );
   const [isPublic, setIsPublic] = useState(!!initialExam?.public);
 
-  const [expression, setExpression] = useState(
-    (initialExam?.expression ?? []).map((e) => ({ ...e }))
-  );
-
   const [questions, setQuestions] = useState(
     (initialExam?.questions ?? []).map((q) => ({ ...q }))
   );
-
-  const addExpression = () => {
-    setExpression((s) => [
-      ...s,
-      {
-        id: uid(),
-        operator: Operator.EQ,
-        value: "",
-        label: "",
-        reference: "",
-        variable: "",
-      } as ExpressionInput,
-    ]);
-  };
-
-  const removeExpression = (id: string) => {
-    setExpression((s) => s.filter((e) => e.id !== id));
-  };
-
-  const updateExpression = (id: string, patch: ExpressionInput) => {
-    setExpression((s) => s.map((e) => (e.id === id ? { ...e, ...patch } : e)));
-  };
 
   const addQuestion = () => {
     setQuestions((q) => [
@@ -107,8 +80,6 @@ export default function ExamEditor({
       description,
       year,
       public: isPublic,
-      expression,
-      questions,
     };
 
     try {
