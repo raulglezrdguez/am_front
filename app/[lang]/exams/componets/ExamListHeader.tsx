@@ -3,7 +3,7 @@
 import Link from "next/link";
 import useDictionary from "@/lib/hooks/useDictionary";
 
-export default function Header() {
+export default function ExamListHeader() {
   const { dict } = useDictionary();
 
   return (
