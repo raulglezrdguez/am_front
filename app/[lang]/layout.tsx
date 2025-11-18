@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Toaster } from "@/components/ui/sonner";
+
 import "../globals.css";
 import Particles from "@/components/Particles";
 import type { Lang } from "@/types/languages";
@@ -65,6 +67,7 @@ export default async function RootLayout({
             <div className="relative z-10 text-white">
               {<Header />}
               {children}
+              <Toaster position="top-center" richColors duration={3000} />
             </div>
           </RequireAuth>
         </AuthProvider>
