@@ -5,6 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function uid() {
-  return Math.random().toString(36).slice(2, 9);
+export function uid(lastIndex: number = 9) {
+  return Math.random().toString(36).slice(2, lastIndex);
 }
