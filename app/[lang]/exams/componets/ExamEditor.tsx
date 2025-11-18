@@ -101,7 +101,7 @@ export default function ExamEditor({
 
   return initialExam ? (
     <form onSubmit={onSubmit} className="min-w-96 space-y-4">
-      {error && <ErrorMessage error={error} />}
+      {error && <ErrorMessage error={error} onClose={() => setError("")} />}
 
       <div>
         <label className="block font-medium">Título</label>
