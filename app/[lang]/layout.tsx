@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "../globals.css";
 import Particles from "@/components/Particles";
 import type { Lang } from "@/types/languages";
@@ -8,14 +8,11 @@ import Header from "@/components/Header";
 import AuthProvider from "@/components/AuthProvider";
 import RequireAuth from "@/components/RequireAuth";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const geist = localFont({
+  src: "../../public/fonts/Geist.ttf",
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const geistMono = localFont({
+  src: "../../public/fonts/GeistMono.ttf",
 });
 
 export async function generateMetadata({
@@ -48,7 +45,8 @@ export default async function RootLayout({
   return (
     <html lang={lang}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geist.className} ${geistMono.className} antialiased`}
       >
         <Particles
           particleColors={["#008000"]}
