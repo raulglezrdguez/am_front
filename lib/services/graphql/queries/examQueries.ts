@@ -112,9 +112,9 @@ export const CREATE_EXAM_MUTATION = gql`
   }
 `;
 
-export const UPDATE_EXAM_MUTATION = gql`
-  mutation UpdateExam($id: ID!, $input: UpdateExamPropertiesInput!) {
-    updateExam(id: $id, input: $input) {
+export const UPDATE_EXAM_PROPERTIES_MUTATION = gql`
+  mutation updateExamProperties($id: ID!, $input: UpdateExamPropertiesInput!) {
+    updateExamProperties(id: $id, input: $input) {
       _id
       title
       subtitle
@@ -122,37 +122,37 @@ export const UPDATE_EXAM_MUTATION = gql`
       description
       public
       year
-      author {
-        name
-        email
-      }
-      expression {
-        id
-        operator
-        value
-        label
-        reference
-        variable
-      }
-      questions {
-        id
-        text
-        expression {
-          id
-          operator
-          value
-          label
-          reference
-          variable
-        }
-        answer
-        reference
-        answers {
-          id
-          value
-          content
-        }
-      }
+      # author {
+      #   name
+      #   email
+      # }
+      # expression {
+      #   id
+      #   operator
+      #   value
+      #   label
+      #   reference
+      #   variable
+      # }
+      # questions {
+      #   id
+      #   text
+      #   expression {
+      #     id
+      #     operator
+      #     value
+      #     label
+      #     reference
+      #     variable
+      #   }
+      #   answer
+      #   reference
+      #   answers {
+      #     id
+      #     value
+      #     content
+      #   }
+      # }
     }
   }
 `;
