@@ -5,7 +5,11 @@ import { FaTrash, FaPlusSquare } from "react-icons/fa";
 
 import { ExpressionInput } from "@/lib/types/exam";
 import { Operator } from "@/lib/types/exam_enums";
-import { displayValue, parseValue } from "@/lib/utils/expression";
+import {
+  displayValue,
+  getOperatorText,
+  parseValue,
+} from "@/lib/utils/expression";
 import { uid } from "@/lib/utils/utils";
 
 type Props = {
@@ -40,6 +44,14 @@ export default function Expressions({ examId, expressions }: Props) {
     );
   };
 
+  const saveExpression = (id: string) => {
+    if (id.length === 7) {
+      // create new expression
+    } else {
+      // update expression
+    }
+  };
+
   return (
     <div className="border-t pt-4" data-exam-id={examId}>
       <h2 className="font-semibold">Expressions</h2>
@@ -56,7 +68,7 @@ export default function Expressions({ examId, expressions }: Props) {
             />
 
             <select
-              className="border p-1 w-24"
+              className="border p-1 min-w-24"
               value={ex.operator}
               onChange={(e) =>
                 updateExpression(ex.id, {
@@ -66,7 +78,7 @@ export default function Expressions({ examId, expressions }: Props) {
             >
               {Object.values(Operator).map((op) => (
                 <option key={op} value={op}>
-                  {op}
+                  {getOperatorText(op)}
                 </option>
               ))}
             </select>
