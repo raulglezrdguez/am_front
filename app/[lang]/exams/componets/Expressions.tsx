@@ -51,6 +51,7 @@ export default function Expressions({ examId, expressions, setError }: Props) {
 
     if (ex) {
       const payload = {
+        id,
         label: ex.label,
         reference: ex.reference,
         variable: ex.variable,
@@ -58,7 +59,7 @@ export default function Expressions({ examId, expressions, setError }: Props) {
         value: ex.value,
       };
       try {
-        const res = await fetch(`/api/expression/${id}`, {
+        const res = await fetch(`/api/exams/${examId}/expression/${id}`, {
           method: id.length === 7 ? "POST" : "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
