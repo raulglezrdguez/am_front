@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { createServerApolloClient } from "../../../../lib/services/graphql/serverClient";
-import { UPDATE_EXAM_PROPERTIES_MUTATION } from "../../../../lib/services/graphql/queries/examQueries";
+import { createServerApolloClient } from "@/lib/services/graphql/serverClient";
+import { UPDATE_EXAM_PROPERTIES_MUTATION } from "@/lib/services/graphql/queries/examQueries";
 
 export async function PUT(
   req: Request,
