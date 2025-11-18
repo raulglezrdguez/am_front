@@ -9,10 +9,7 @@ import { Exam, QuestionInput } from "@/lib/types/exam";
 import { Answer, Operator } from "@/lib/types/exam_enums";
 import Expressions from "./Expressions";
 import { toast } from "sonner";
-
-function uid() {
-  return Math.random().toString(36).slice(2, 9);
-}
+import { uid } from "@/lib/utils/utils";
 
 export default function ExamEditor({
   initialExam,
@@ -95,7 +92,6 @@ export default function ExamEditor({
       }
 
       toast.success(`Exam "${title}" saved!`);
-      // Optionally refresh or show success
     } catch (err: unknown) {
       setError((err as Error).message || String(err));
     } finally {
@@ -181,6 +177,7 @@ export default function ExamEditor({
       <Expressions
         examId={initialExam?._id}
         expressions={initialExam?.expression}
+        setError={setError}
       />
 
       <div className="border-t pt-4">
