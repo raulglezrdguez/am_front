@@ -6,10 +6,7 @@ import { FaTrash, FaPlusSquare } from "react-icons/fa";
 import { ExpressionInput } from "@/lib/types/exam";
 import { Operator } from "@/lib/types/exam_enums";
 import { displayValue, parseValue } from "@/lib/utils/expression";
-
-function uid() {
-  return Math.random().toString(36).slice(2, 9);
-}
+import { uid } from "@/lib/utils/utils";
 
 type Props = {
   examId: string;
