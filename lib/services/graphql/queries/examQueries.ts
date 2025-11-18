@@ -157,6 +157,22 @@ export const UPDATE_EXAM_PROPERTIES_MUTATION = gql`
   }
 `;
 
+export const CREATE_EXAM_EXPRESSION_MUTATION = gql`
+  mutation createExamExpression($id: ID!, $input: [ExpressionInput!]!) {
+    createExamExpression(id: $id, input: $input) {
+      _id
+      expression {
+        id
+        operator
+        value
+        label
+        reference
+        variable
+      }
+    }
+  }
+`;
+
 export async function getExams() {
   try {
     const cookieStore = await cookies();
