@@ -36,8 +36,25 @@ export default function Expressions({ examId, expressions, setError }: Props) {
     setLocalExpressions((s) => [...s, next]);
   };
 
-  const removeExpression = (id: string) => {
+  const removeExpression = async (id: string) => {
     setLocalExpressions((s) => s.filter((e) => e.id !== id));
+    if (id.length === 7) return;
+
+    try {
+      const res = await fetch(`/api/exams/${examId}/expression/${id}`, {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+      });
+
+      if (!res.ok) {
+        const txt = await res.text();
+        throw new Error(txt || "Error saving expression");
+      }
+
+      toast.success("Expression removed!");
+    } catch (err) {
+      setError((err as Error).message || String(err));
+    }
   };
 
   const updateExpression = (id: string, patch: Partial<ExpressionInput>) => {
@@ -69,8 +86,19 @@ export default function Expressions({ examId, expressions, setError }: Props) {
           const txt = await res.text();
           throw new Error(txt || "Error saving expression");
         }
+        const result = await res.json();
+        const expression: ExpressionInput[] = result.data.expression;
+        const currentExpression = expression.find((e: ExpressionInput) =>
+          e.id.startsWith(id)
+        );
 
-        toast.success(`Expression "${payload.label}" saved!`);
+        if (currentExpression) {
+          ex.id = currentExpression.id;
+
+          toast.success(`Expression saved!`);
+        } else {
+          toast.error(`Error saving expression!`);
+        }
       } catch (err) {
         setError((err as Error).message || String(err));
       }
