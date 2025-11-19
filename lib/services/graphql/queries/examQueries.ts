@@ -185,7 +185,8 @@ export async function getExams() {
       query: GET_EXAMS,
       context: {
         fetchOptions: {
-          next: { revalidate: 300 },
+          // next: { revalidate: 300 },
+          next: { revalidate: 0 },
         },
       },
     });
