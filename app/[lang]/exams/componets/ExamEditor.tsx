@@ -1,4 +1,3 @@
-// Client-side editor component
 "use client";
 
 import { useState } from "react";
@@ -10,12 +9,15 @@ import { Answer, Operator } from "@/lib/types/exam_enums";
 import Expressions from "./Expressions";
 import { toast } from "sonner";
 import { uid } from "@/lib/utils/utils";
+import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function ExamEditor({
   initialExam,
 }: {
   initialExam: Exam | null;
 }) {
+  const { dict } = useDictionary();
+
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -109,41 +111,41 @@ export default function ExamEditor({
       >
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Título
+            {dict?.exams.createExam.title} *
           </label>
           <input
             type="text"
             name="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter exam title"
+            placeholder={dict?.exams.createExam.title}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             required
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Subtitulo
+            {dict?.exams.createExam.subtitle} *
           </label>
           <input
             type="text"
             name="subtitle"
             value={subtitle}
             onChange={(e) => setSubtitle(e.target.value)}
-            placeholder="Enter exam subtitle"
+            placeholder={dict?.exams.createExam.subtitle}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             required
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Description *
+            {dict?.exams.createExam.description} *
           </label>
           <textarea
             name="description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Enter exam description"
+            placeholder={dict?.exams.createExam.description}
             rows={4}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             required
@@ -151,20 +153,20 @@ export default function ExamEditor({
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Instructions *
+            {dict?.exams.createExam.instructions} *
           </label>
           <textarea
             name="instructions"
             value={instructions}
             onChange={(e) => setInstructions(e.target.value)}
-            placeholder="Exam instructions"
+            placeholder={dict?.exams.createExam.instructions}
             rows={3}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Year *
+            {dict?.exams.createExam.year} *
           </label>
           <input
             type="number"
@@ -186,11 +188,11 @@ export default function ExamEditor({
               className="w-4 h-4 bg-gray-700 border border-gray-600 rounded focus:ring-2 focus:ring-green-500"
             />
             <span className="text-sm font-medium text-gray-300">
-              Make exam public
+              {dict?.exams.createExam.public}
             </span>
           </label>
           <p className="text-xs text-gray-500 mt-1">
-            Unchecked = private exam (only visible to author)
+            {dict?.exams.createExam.publicMsg}
           </p>
         </div>
 

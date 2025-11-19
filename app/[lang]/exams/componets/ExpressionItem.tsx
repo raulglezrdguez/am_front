@@ -1,5 +1,6 @@
 "use client";
 
+import useDictionary from "@/lib/hooks/useDictionary";
 import { ExpressionInput } from "@/lib/types/exam";
 import { Operator } from "@/lib/types/exam_enums";
 import {
@@ -22,26 +23,28 @@ export default function ExpressionItem({
   saveExpression,
   removeExpression,
 }: Props) {
+  const { dict } = useDictionary();
+
   return (
     <div className="p-2 border rounded-lg mb-2">
       <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-8 space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Label
+            {dict?.exams.editExam.expression.item.label}
           </label>
           <input
             type="text"
             name="label"
             value={ex.label || ""}
             onChange={(e) => updateExpression(ex.id, { label: e.target.value })}
-            placeholder="label"
+            placeholder={dict?.exams.editExam.expression.item.label}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             required
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Reference
+            {dict?.exams.editExam.expression.item.reference}
           </label>
           <input
             type="text"
@@ -50,13 +53,13 @@ export default function ExpressionItem({
             onChange={(e) =>
               updateExpression(ex.id, { reference: e.target.value })
             }
-            placeholder="reference"
+            placeholder={dict?.exams.editExam.expression.item.reference}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Variable
+            {dict?.exams.editExam.expression.item.variable}
           </label>
           <input
             type="text"
@@ -65,14 +68,14 @@ export default function ExpressionItem({
             onChange={(e) =>
               updateExpression(ex.id, { variable: e.target.value })
             }
-            placeholder="variable"
+            placeholder={dict?.exams.editExam.expression.item.variable}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             required
           />
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Operator
+            {dict?.exams.editExam.expression.item.operator}
           </label>
           <select
             value={ex.operator}
@@ -91,7 +94,7 @@ export default function ExpressionItem({
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-300 mb-2">
-            Value
+            {dict?.exams.editExam.expression.item.value}
           </label>
           <input
             type="text"
@@ -102,7 +105,7 @@ export default function ExpressionItem({
                 value: parseValue(e.target.value, ex.value),
               })
             }
-            placeholder="value"
+            placeholder={dict?.exams.editExam.expression.item.value}
             className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             required
           />

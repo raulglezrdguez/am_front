@@ -10,6 +10,7 @@ import { uid } from "@/lib/utils/utils";
 import { toast } from "sonner";
 import ExpressionItem from "./ExpressionItem";
 import { parseValueOnly } from "@/lib/utils/expression";
+import useDictionary from "@/lib/hooks/useDictionary";
 
 type Props = {
   examId: string;
@@ -18,13 +19,18 @@ type Props = {
 };
 
 export default function Expressions({ examId, expressions, setError }: Props) {
+  const { dict } = useDictionary();
+
   const expressionSchema = z.object({
-    id: z.string().min(3, "id is required"),
-    label: z.string().min(1, "Label is required"),
+    id: z.string().min(3, dict?.exams.editExam.expression.validId),
+    label: z.string().min(1, dict?.exams.editExam.expression.validLabel),
     reference: z.string().optional(),
-    variable: z.string().min(1, "Variable is required"),
+    variable: z.string().min(1, dict?.exams.editExam.expression.validVariable),
     operator: z.enum(Operator),
-    value: z.string().min(1, "Value is required").transform(parseValueOnly),
+    value: z
+      .string()
+      .min(1, dict?.exams.editExam.expression.validValue)
+      .transform(parseValueOnly),
   });
 
   const [localExpressions, setLocalExpressions] = useState<ExpressionInput[]>(
@@ -102,7 +108,7 @@ export default function Expressions({ examId, expressions, setError }: Props) {
 
         if (!res.ok) {
           const txt = await res.text();
-          throw new Error(txt || "Error saving expression");
+          throw new Error(txt || dict?.exams.editExam.expression.saveError);
         }
         const result = await res.json();
         const expression: ExpressionInput[] = result.data.expression;
@@ -113,9 +119,9 @@ export default function Expressions({ examId, expressions, setError }: Props) {
         if (currentExpression) {
           ex.id = currentExpression.id;
 
-          toast.success(`Expression saved!`);
+          toast.success(dict?.exams.editExam.expression.saveSuccess);
         } else {
-          toast.error(`Error saving expression!`);
+          toast.error(dict?.exams.editExam.expression.saveError);
         }
       } catch (err) {
         setError((err as Error).message || String(err));
@@ -125,7 +131,9 @@ export default function Expressions({ examId, expressions, setError }: Props) {
 
   return (
     <div className="border-t pt-4" data-exam-id={examId}>
-      <h2 className="text-2xl font-bold text-gray-100">Expressions</h2>
+      <h2 className="text-2xl font-bold text-gray-100">
+        {dict?.exams.editExam.expression.title}
+      </h2>
       {localExpressions.map((ex) => (
         <ExpressionItem
           key={ex.id}

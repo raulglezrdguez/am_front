@@ -2,13 +2,16 @@ import Link from "next/link";
 import { getExam } from "../../../../lib/services/graphql/queries/examQueries";
 import ExamEditor from "../componets/ExamEditor";
 import ErrorMessage from "@/components/ErrorMessage";
+import { getDictionary } from "../../dictionaries";
+import { Lang } from "@/types/languages";
 
 interface Props {
-  params: Promise<{ lang: string; id: string }>;
+  params: Promise<{ lang: Lang; id: string }>;
 }
 
 export default async function Page({ params }: Props) {
   const { id, lang } = await params;
+  const dict = await getDictionary(lang);
 
   const { exam, error } = await getExam(id);
 
@@ -21,7 +24,7 @@ export default async function Page({ params }: Props) {
           <div className="max-w-2xl mx-auto">
             <div className="flex items-center justify-between mb-8">
               <h1 className="text-4xl font-bold text-gray-100">
-                Editar examen
+                {dict?.exams.editExam.title}
               </h1>
               <Link
                 href={`/${lang}/exams`}
