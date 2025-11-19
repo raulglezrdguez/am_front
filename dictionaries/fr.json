@@ -35,7 +35,23 @@
   "exams": {
     "title": "Liste des examens",
     "emptyExams": "Aucun examen disponible",
-    "newExam": "Créer un examen"
+    "newExam": "Créer un examen",
+    "createExam": {
+      "title": "Titre",
+      "subtitle": "Sous-titre",
+      "description": "Description",
+      "instructions": "Instructions",
+      "year": "Année",
+      "public": "Rendre l'examen public",
+      "publicMsg": "Non coché = examen privé (visible uniquement par l'auteur)",
+      "note": "Remarque",
+      "noteMsg": "Les questions et les expressions peuvent être ajoutées après la création de l'examen. Ce formulaire crée la structure de base de l'examen.",
+      "validTitle": "Le titre est requis",
+      "validSubtitle": "Le sous-titre est requis",
+      "validInstructions": "Les instructions sont requises",
+      "validDescription": "La description est requise",
+      "validYear": "Une année correcte est requise"
+    }
   },
   "loading": "Chargement..."
 }

@@ -40,6 +40,22 @@ export type Dictionary = {
     title: string;
     emptyExams: string;
     newExam: string;
+    createExam: {
+      title: string;
+      subtitle: string;
+      description: string;
+      instructions: string;
+      year: string;
+      public: string;
+      publicMsg: string;
+      note: string;
+      noteMsg: string;
+      validTitle: string;
+      validSubtitle: string;
+      validInstructions: string;
+      validDescription: string;
+      validYear: string;
+    };
   };
   loading: string;
 };

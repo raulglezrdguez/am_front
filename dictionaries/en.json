@@ -35,7 +35,23 @@
   "exams": {
     "title": "List of exams",
     "emptyExams": "No exams available",
-    "newExam": "Create exam"
+    "newExam": "Create exam",
+    "createExam": {
+      "title": "Title",
+      "subtitle": "Subtitle",
+      "description": "Description",
+      "instructions": "Instructions",
+      "year": "Year",
+      "public": "Make exam public",
+      "publicMsg": "Unchecked = private exam (only visible to author)",
+      "note": "Note",
+      "noteMsg": "Questions and expressions can be added after creating the exam. This form creates the basic exam structure.",
+      "validTitle": "Title is required",
+      "validSubtitle": "Subtitle is required",
+      "validInstructions": "Instructions is required",
+      "validDescription": "Description is required",
+      "validYear": "Correct year is required"
+    }
   },
   "loading": "Loading..."
 }

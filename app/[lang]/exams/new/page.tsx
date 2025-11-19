@@ -27,11 +27,14 @@ export default function NewExamPage() {
   });
 
   const examSchema = z.object({
-    title: z.string().min(3, "Title is required"),
-    subtitle: z.string().min(3, "Subtitle is required"),
-    instructions: z.string().min(3, "Instructions is required"),
-    description: z.string().min(3, "Description is required"),
-    year: z.number().int().min(1801, { message: "Correct year is required" }),
+    title: z.string().min(3, dict?.exams.createExam.validTitle),
+    subtitle: z.string().min(3, dict?.exams.createExam.validSubtitle),
+    instructions: z.string().min(3, dict?.exams.createExam.validInstructions),
+    description: z.string().min(3, dict?.exams.createExam.validDescription),
+    year: z
+      .number()
+      .int()
+      .min(1801, { message: dict?.exams.createExam.validYear }),
     public: z.boolean(),
     expression: z.array(z.any()).optional(),
     questions: z.array(z.any()).optional(),
@@ -131,14 +134,14 @@ export default function NewExamPage() {
           {/* Title */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Title *
+              {dict?.exams.createExam.title} *
             </label>
             <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleChange}
-              placeholder="Enter exam title"
+              placeholder={dict?.exams.createExam.title}
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
               required
             />
@@ -147,14 +150,14 @@ export default function NewExamPage() {
           {/* Subtitle */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Subtitle *
+              {dict?.exams.createExam.subtitle} *
             </label>
             <input
               type="text"
               name="subtitle"
               value={formData.subtitle}
               onChange={handleChange}
-              placeholder="Enter exam subtitle"
+              placeholder={dict?.exams.createExam.subtitle}
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>
@@ -162,13 +165,13 @@ export default function NewExamPage() {
           {/* Description */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Description *
+              {dict?.exams.createExam.description} *
             </label>
             <textarea
               name="description"
               value={formData.description}
               onChange={handleChange}
-              placeholder="Enter exam description"
+              placeholder={dict?.exams.createExam.description}
               rows={4}
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
               required
@@ -178,13 +181,13 @@ export default function NewExamPage() {
           {/* Instructions */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Instructions *
+              {dict?.exams.createExam.instructions} *
             </label>
             <textarea
               name="instructions"
               value={formData.instructions}
               onChange={handleChange}
-              placeholder="Exam instructions"
+              placeholder={dict?.exams.createExam.instructions}
               rows={3}
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             />
@@ -193,7 +196,7 @@ export default function NewExamPage() {
           {/* Year */}
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-2">
-              Year *
+              {dict?.exams.createExam.year} *
             </label>
             <input
               type="number"
@@ -217,11 +220,11 @@ export default function NewExamPage() {
                 className="w-4 h-4 bg-gray-700 border border-gray-600 rounded focus:ring-2 focus:ring-green-500"
               />
               <span className="text-sm font-medium text-gray-300">
-                Make exam public
+                {dict?.exams.createExam.public}
               </span>
             </label>
             <p className="text-xs text-gray-500 mt-1">
-              Unchecked = private exam (only visible to author)
+              {dict?.exams.createExam.publicMsg}
             </p>
           </div>
 
@@ -243,9 +246,8 @@ export default function NewExamPage() {
           {/* Note */}
           <div className="mt-8 p-4 bg-blue-500/10 border border-blue-500/20 rounded-lg">
             <p className="text-sm text-blue-300">
-              <strong>Note:</strong> Questions and expressions can be added
-              after creating the exam. This form creates the basic exam
-              structure.
+              <strong>{dict?.exams.createExam.note}:</strong>{" "}
+              {dict?.exams.createExam.noteMsg}
             </p>
           </div>
         </form>

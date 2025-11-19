@@ -35,7 +35,23 @@
   "exams": {
     "title": "Prüfungsliste",
     "emptyExams": "Keine Prüfungen verfügbar",
-    "newExam": "Prüfung erstellen"
+    "newExam": "Prüfung erstellen",
+    "createExam": {
+      "title": "Titel",
+      "subtitle": "Untertitel",
+      "description": "Beschreibung",
+      "instructions": "Anweisungen",
+      "year": "Jahr",
+      "public": "Prüfung öffentlich machen",
+      "publicMsg": "Nicht angekreuzt = private Prüfung (nur für den Autor sichtbar)",
+      "note": "Hinweis",
+      "noteMsg": "Fragen und Ausdrücke können nach dem Erstellen der Prüfung hinzugefügt werden. Dieses Formular erstellt die grundlegende Prüfungsstruktur.",
+      "validTitle": "Titel ist erforderlich",
+      "validSubtitle": "Untertitel ist erforderlich",
+      "validInstructions": "Anweisungen sind erforderlich",
+      "validDescription": "Beschreibung ist erforderlich",
+      "validYear": "Korrektes Jahr ist erforderlich"
+    }
   },
   "loading": "Wird geladen..."
 }

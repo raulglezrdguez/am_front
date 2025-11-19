@@ -35,7 +35,23 @@
   "exams": {
     "title": "Elenco degli esami",
     "emptyExams": "Nessun esame disponibile",
-    "newExam": "Crea esame"
+    "newExam": "Crea esame",
+    "createExam": {
+      "title": "Titolo",
+      "subtitle": "Sottotitolo",
+      "description": "Descrizione",
+      "instructions": "Istruzioni",
+      "year": "Anno",
+      "public": "Rendi esame pubblico",
+      "publicMsg": "Non spuntato = esame privato (visibile solo all'autore)",
+      "note": "Nota",
+      "noteMsg": "Le domande e le espressioni possono essere aggiunte dopo aver creato l'esame. Questo modulo crea la struttura di base dell'esame.",
+      "validTitle": "Il titolo è obbligatorio",
+      "validSubtitle": "Il sottotitolo è obbligatorio",
+      "validInstructions": "Le istruzioni sono obbligatorie",
+      "validDescription": "La descrizione è obbligatoria",
+      "validYear": "È richiesto un anno corretto"
+    }
   },
   "loading": "Caricamento..."
 }
