@@ -7,6 +7,7 @@ import Link from "next/link";
 import { CreateExamInput } from "@/lib/types/exam";
 import useDictionary from "@/lib/hooks/useDictionary";
 import ErrorMessage from "@/components/ErrorMessage";
+import { FaSave, FaSpinner } from "react-icons/fa";
 
 export default function NewExamPage() {
   const router = useRouter();
@@ -153,7 +154,7 @@ export default function NewExamPage() {
               name="subtitle"
               value={formData.subtitle}
               onChange={handleChange}
-              placeholder="Optional subtitle"
+              placeholder="Enter exam subtitle"
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent"
             />
           </div>
@@ -183,7 +184,7 @@ export default function NewExamPage() {
               name="instructions"
               value={formData.instructions}
               onChange={handleChange}
-              placeholder="Exam instructions for students"
+              placeholder="Exam instructions"
               rows={3}
               className="w-full px-4 py-2 bg-gray-700/50 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent resize-none"
             />
@@ -229,16 +230,14 @@ export default function NewExamPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-3 bg-green-600 hover:bg-green-700 disabled:bg-green-600/50 text-white font-medium rounded-lg transition-colors"
+              className="mx-auto px-6 py-6 bg-green-600/50 text-gray-100 hover:cursor-pointer hover:bg-green-600/80 rounded-xl"
             >
-              {loading ? "Creating..." : "Create Exam"}
+              {loading ? (
+                <FaSpinner className="animate-spin" size={24} />
+              ) : (
+                <FaSave size={24} />
+              )}
             </button>
-            <Link
-              href={`/${lang}/exams`}
-              className="flex-1 px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors text-center"
-            >
-              Cancel
-            </Link>
           </div>
 
           {/* Note */}
