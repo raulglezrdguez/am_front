@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { getExam } from "../../../../lib/services/graphql/queries/examQueries";
 import ExamEditor from "../componets/ExamEditor";
 import ErrorMessage from "@/components/ErrorMessage";
@@ -7,7 +8,7 @@ interface Props {
 }
 
 export default async function Page({ params }: Props) {
-  const { id } = await params;
+  const { id, lang } = await params;
 
   const { exam, error } = await getExam(id);
 
@@ -16,9 +17,33 @@ export default async function Page({ params }: Props) {
       {error ? (
         <ErrorMessage error={error.message} />
       ) : (
-        <div className="min-h-screen flex flex-col items-center justify-center font-sans mt-30">
-          <h1 className="text-3xl font-bold text-gray-100 mb-5">Exam editor</h1>
-          <ExamEditor initialExam={exam} />
+        <div className="min-h-screen px-4 sm:px-6 lg:px-8 bg-gray-900/20 mt-30">
+          <div className="max-w-2xl mx-auto">
+            <div className="flex items-center justify-between mb-8">
+              <h1 className="text-4xl font-bold text-gray-100">
+                Editar examen
+              </h1>
+              <Link
+                href={`/${lang}/exams`}
+                className="text-gray-400 hover:text-gray-200 flex items-center gap-2"
+              >
+                <svg
+                  className="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              </Link>
+            </div>
+            <ExamEditor initialExam={exam} />
+          </div>
         </div>
       )}
     </div>
