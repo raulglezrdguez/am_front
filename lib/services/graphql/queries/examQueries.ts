@@ -173,6 +173,38 @@ export const CREATE_EXAM_EXPRESSION_MUTATION = gql`
   }
 `;
 
+export const UPDATE_EXAM_EXPRESSION_MUTATION = gql`
+  mutation updateExamExpression($id: ID!, $input: ExpressionInput!) {
+    updateExamExpression(id: $id, input: $input) {
+      _id
+      expression {
+        id
+        operator
+        value
+        label
+        reference
+        variable
+      }
+    }
+  }
+`;
+
+export const DELETE_EXAM_EXPRESSION_MUTATION = gql`
+  mutation deleteExamExpression($id: ID!, $expressionId: String!) {
+    deleteExamExpression(id: $id, expressionId: $expressionId) {
+      _id
+      expression {
+        id
+        operator
+        value
+        label
+        reference
+        variable
+      }
+    }
+  }
+`;
+
 export async function getExams() {
   try {
     const cookieStore = await cookies();
@@ -222,13 +254,13 @@ export async function getExam(id: string) {
       query: GET_EXAM,
       context: {
         fetchOptions: {
-          next: { revalidate: 300 },
+          // next: { revalidate: 300 },
+          next: { revalidate: 0 },
         },
       },
       variables: { id },
     });
 
-    console.log(data);
     const exam = data?.exam || null;
 
     return { exam };
