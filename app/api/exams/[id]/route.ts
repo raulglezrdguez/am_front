@@ -81,8 +81,6 @@ export async function PUT(
         }
       )?.updateExam ?? null;
 
-    console.log(updated);
-
     return NextResponse.json({ data: updated });
   } catch (err: unknown) {
     return NextResponse.json(
