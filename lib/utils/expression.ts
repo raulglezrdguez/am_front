@@ -16,6 +16,13 @@ export const parseValue = (
   return val; // string por defecto
 };
 
+export const parseValueOnly = (v: string): string | number | boolean => {
+  if (v === "true") return true;
+  if (v === "false") return false;
+  if (!Number.isNaN(Number(v))) return Number(v);
+  return v; // string
+};
+
 const operatorTextMap: Record<Operator, string> = {
   [Operator.EQ]: "Equal_to",
   [Operator.NE]: "Not_equal_to",
