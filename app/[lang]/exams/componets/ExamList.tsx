@@ -12,7 +12,7 @@ export function ExamsList({ exams }: { exams: Exam[] }) {
       {exams.map((exam) => (
         <Link
           key={exam._id}
-          href={`/exams/${exam._id}`}
+          href={`exams/${exam._id}`}
           className="block p-6 bg-green-800/80 rounded-lg shadow hover:shadow-lg transition-shadow border border-gray-200"
         >
           <div className="flex justify-between items-start mb-2">
