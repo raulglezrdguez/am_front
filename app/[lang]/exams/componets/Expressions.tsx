@@ -1,17 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { FaTrash, FaPlusSquare, FaSave } from "react-icons/fa";
+import { FaPlusSquare } from "react-icons/fa";
+import { z } from "zod";
 
 import { ExpressionInput } from "@/lib/types/exam";
 import { Operator } from "@/lib/types/exam_enums";
-import {
-  displayValue,
-  getOperatorText,
-  parseValue,
-} from "@/lib/utils/expression";
 import { uid } from "@/lib/utils/utils";
 import { toast } from "sonner";
+import ExpressionItem from "./ExpressionItem";
+import { parseValueOnly } from "@/lib/utils/expression";
 
 type Props = {
   examId: string;
@@ -20,6 +18,15 @@ type Props = {
 };
 
 export default function Expressions({ examId, expressions, setError }: Props) {
+  const expressionSchema = z.object({
+    id: z.string().min(3, "id is required"),
+    label: z.string().min(1, "Label is required"),
+    reference: z.string().optional(),
+    variable: z.string().min(1, "Variable is required"),
+    operator: z.enum(Operator),
+    value: z.string().min(1, "Value is required").transform(parseValueOnly),
+  });
+
   const [localExpressions, setLocalExpressions] = useState<ExpressionInput[]>(
     (expressions ?? []).map((e) => ({ ...e }))
   );
@@ -67,15 +74,26 @@ export default function Expressions({ examId, expressions, setError }: Props) {
     const ex = localExpressions.find((e) => e.id === id);
 
     if (ex) {
-      const payload = {
-        id,
-        label: ex.label,
-        reference: ex.reference,
-        variable: ex.variable,
-        operator: ex.operator,
-        value: ex.value,
-      };
       try {
+        const payload = {
+          id,
+          label: ex.label,
+          reference: ex.reference,
+          variable: ex.variable,
+          operator: ex.operator,
+          value: ex.value,
+        };
+
+        const parseResult = expressionSchema.safeParse(payload);
+        if (!parseResult.success) {
+          const zodError = parseResult.error;
+          const message = zodError.issues.map((i) => i.message).join(". ");
+          setError(message);
+
+          toast.error(message);
+          return;
+        }
+
         const res = await fetch(`/api/exams/${examId}/expression/${id}`, {
           method: id.length === 7 ? "POST" : "PUT",
           headers: { "Content-Type": "application/json" },
@@ -107,98 +125,27 @@ export default function Expressions({ examId, expressions, setError }: Props) {
 
   return (
     <div className="border-t pt-4" data-exam-id={examId}>
-      <h2 className="font-semibold">Expressions</h2>
+      <h2 className="text-2xl font-bold text-gray-100">Expressions</h2>
       {localExpressions.map((ex) => (
-        <div key={ex.id} className="p-2 border mb-2">
-          <div className="flex gap-2 items-center">
-            <button
-              type="button"
-              onClick={() => saveExpression(ex.id)}
-              className="text-green-600 hover:bg-green-50 p-2 rounded transition-colors"
-              aria-label="Save"
-              title="Save"
-            >
-              <FaSave size={24} />
-            </button>
-            <div className="flex flex-col align-middle justify-center items-center gap-3">
-              <div className="flex flex-row align-middle items-center justify-around w-full">
-                <input
-                  className="border p-1"
-                  value={ex.label || ""}
-                  onChange={(e) =>
-                    updateExpression(ex.id, { label: e.target.value })
-                  }
-                  placeholder="label"
-                />
-                <input
-                  className="border p-1"
-                  value={ex.reference || ""}
-                  onChange={(e) =>
-                    updateExpression(ex.id, { reference: e.target.value })
-                  }
-                  placeholder="reference"
-                />
-              </div>
-              <div className="flex flex-row">
-                <input
-                  className="border p-1 flex-1"
-                  value={ex.variable || ""}
-                  onChange={(e) =>
-                    updateExpression(ex.id, { variable: e.target.value })
-                  }
-                  placeholder="variable"
-                />
-
-                <select
-                  className="border p-1 min-w-24"
-                  value={ex.operator}
-                  onChange={(e) =>
-                    updateExpression(ex.id, {
-                      operator: e.target.value as Operator,
-                    })
-                  }
-                >
-                  {Object.values(Operator).map((op) => (
-                    <option key={op} value={op}>
-                      {getOperatorText(op)}
-                    </option>
-                  ))}
-                </select>
-
-                <input
-                  className="border p-1 w-40"
-                  value={displayValue(ex.value)}
-                  onChange={(e) =>
-                    updateExpression(ex.id, {
-                      value: parseValue(e.target.value, ex.value),
-                    })
-                  }
-                  placeholder="value"
-                />
-              </div>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => removeExpression(ex.id)}
-              className="text-red-600 hover:bg-red-50 p-2 rounded transition-colors"
-              aria-label="Eliminar"
-              title="Eliminar"
-            >
-              <FaTrash size={24} />
-            </button>
-          </div>
-        </div>
+        <ExpressionItem
+          key={ex.id}
+          ex={ex}
+          removeExpression={removeExpression}
+          saveExpression={saveExpression}
+          updateExpression={updateExpression}
+        />
       ))}
 
-      <button
-        type="button"
-        onClick={addExpression}
-        className="px-3 py-3 bg-green-800/50 text-gray-100 hover:cursor-pointer hover:bg-green-800/80"
-        aria-label="add expression"
-      >
-        <FaPlusSquare size={24} />
-      </button>
+      <div className="flex justify-center">
+        <button
+          type="button"
+          onClick={addExpression}
+          className="px-3 py-3 bg-green-800/50 text-gray-100 hover:cursor-pointer hover:bg-green-800/80"
+          aria-label="add expression"
+        >
+          <FaPlusSquare size={24} />
+        </button>
+      </div>
     </div>
   );
 }
