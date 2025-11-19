@@ -51,6 +51,25 @@
       "validInstructions": "Instructions is required",
       "validDescription": "Description is required",
       "validYear": "Correct year is required"
+    },
+    "editExam": {
+      "title": "Edit examen",
+      "expression": {
+        "title": "Expressions",
+        "validId": "id is required",
+        "validLabel": "Label is required",
+        "validVariable": "Variable is required",
+        "validValue": "Value is required",
+        "saveSuccess": "Expression saved!",
+        "saveError": "Error saving expression!",
+        "item": {
+          "label": "Label",
+          "reference": "Reference",
+          "variable": "Variable",
+          "operator": "Operator",
+          "value": "Value"
+        }
+      }
     }
   },
   "loading": "Loading..."

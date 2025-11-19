@@ -56,6 +56,25 @@ export type Dictionary = {
       validDescription: string;
       validYear: string;
     };
+    editExam: {
+      title: string;
+      expression: {
+        title: string;
+        validId: string;
+        validLabel: string;
+        validVariable: string;
+        validValue: string;
+        saveSuccess: string;
+        saveError: string;
+        item: {
+          label: string;
+          reference: string;
+          variable: string;
+          operator: string;
+          value: string;
+        };
+      };
+    };
   };
   loading: string;
 };

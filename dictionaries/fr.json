@@ -51,6 +51,25 @@
       "validInstructions": "Les instructions sont requises",
       "validDescription": "La description est requise",
       "validYear": "Une année correcte est requise"
+    },
+    "editExam": {
+      "title": "Modifier l'examen",
+      "expression": {
+        "title": "Expressions",
+        "validId": "L'id est requis",
+        "validLabel": "Le libellé est requis",
+        "validVariable": "La variable est requise",
+        "validValue": "La valeur est requise",
+        "saveSuccess": "Expression enregistrée !",
+        "saveError": "Erreur lors de l'enregistrement de l'expression !",
+        "item": {
+          "label": "Libellé",
+          "reference": "Référence",
+          "variable": "Variable",
+          "operator": "Opérateur",
+          "value": "Valeur"
+        }
+      }
     }
   },
   "loading": "Chargement..."

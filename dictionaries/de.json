@@ -51,6 +51,25 @@
       "validInstructions": "Anweisungen sind erforderlich",
       "validDescription": "Beschreibung ist erforderlich",
       "validYear": "Korrektes Jahr ist erforderlich"
+    },
+    "editExam": {
+      "title": "Prüfung bearbeiten",
+      "expression": {
+        "title": "Ausdrücke",
+        "validId": "ID ist erforderlich",
+        "validLabel": "Bezeichnung ist erforderlich",
+        "validVariable": "Variable ist erforderlich",
+        "validValue": "Wert ist erforderlich",
+        "saveSuccess": "Ausdruck gespeichert!",
+        "saveError": "Fehler beim Speichern des Ausdrucks!",
+        "item": {
+          "label": "Bezeichnung",
+          "reference": "Referenz",
+          "variable": "Variable",
+          "operator": "Operator",
+          "value": "Wert"
+        }
+      }
     }
   },
   "loading": "Wird geladen..."

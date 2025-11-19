@@ -51,6 +51,25 @@
       "validInstructions": "Le istruzioni sono obbligatorie",
       "validDescription": "La descrizione è obbligatoria",
       "validYear": "È richiesto un anno corretto"
+    },
+    "editExam": {
+      "title": "Modifica esame",
+      "expression": {
+        "title": "Espressioni",
+        "validId": "L'id è obbligatorio",
+        "validLabel": "L'etichetta è obbligatoria",
+        "validVariable": "La variabile è obbligatoria",
+        "validValue": "Il valore è obbligatorio",
+        "saveSuccess": "Espressione salvata!",
+        "saveError": "Errore durante il salvataggio dell'espressione!",
+        "item": {
+          "label": "Etichetta",
+          "reference": "Riferimento",
+          "variable": "Variabile",
+          "operator": "Operatore",
+          "value": "Valore"
+        }
+      }
     }
   },
   "loading": "Caricamento..."
