@@ -8,9 +8,9 @@ import { ExpressionInput } from "@/lib/types/exam";
 import { Operator } from "@/lib/types/exam_enums";
 import { uid } from "@/lib/utils/utils";
 import { toast } from "sonner";
-import ExpressionItem from "./ExpressionItem";
 import { parseValueOnly } from "@/lib/utils/expression";
 import useDictionary from "@/lib/hooks/useDictionary";
+import ExpressionItem from "./ExpressionItem";
 
 type Props = {
   examId: string;
@@ -144,7 +144,7 @@ export default function Expressions({ examId, expressions, setError }: Props) {
         />
       ))}
 
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-5">
         <button
           type="button"
           onClick={addExpression}
