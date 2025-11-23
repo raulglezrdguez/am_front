@@ -173,6 +173,54 @@ export const CREATE_EXAM_EXPRESSION_MUTATION = gql`
   }
 `;
 
+export const CREATE_EXAM_QUESTION_MUTATION = gql`
+  mutation createExamQuestion($id: ID!, $input: [QuestionInput!]!) {
+    createExamQuestion(id: $id, input: $input) {
+      _id
+      questions {
+        id
+        text
+        expression {
+          variable
+          operator
+          value
+        }
+        answer
+        reference
+        answers {
+          id
+          value
+          content
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_EXAM_QUESTION_MUTATION = gql`
+  mutation updateExamQuestion($id: ID!, $input: QuestionInput!) {
+    updateExamQuestion(id: $id, input: $input) {
+      _id
+      questions {
+        id
+        text
+        expression {
+          variable
+          operator
+          value
+        }
+        answer
+        reference
+        answers {
+          id
+          value
+          content
+        }
+      }
+    }
+  }
+`;
+
 export const UPDATE_EXAM_EXPRESSION_MUTATION = gql`
   mutation updateExamExpression($id: ID!, $input: ExpressionInput!) {
     updateExamExpression(id: $id, input: $input) {
