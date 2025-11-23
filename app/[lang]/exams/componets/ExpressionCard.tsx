@@ -15,7 +15,7 @@ export default function ExpressionCard({ ex, onEdit, onDelete }: Props) {
   const { dict } = useDictionary();
 
   return (
-    <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors">
+    <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors mb-2">
       <div className="flex justify-between items-start mb-4">
         <h3 className="text-lg font-semibold text-gray-200 truncate flex-1">
           {ex.label || "No label"}
@@ -63,7 +63,6 @@ export default function ExpressionCard({ ex, onEdit, onDelete }: Props) {
           </span>
         </div>
 
-        {/* Value */}
         <div className="space-y-1">
           <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider">
             {dict?.exams.editExam.expression.item.value}
@@ -73,7 +72,6 @@ export default function ExpressionCard({ ex, onEdit, onDelete }: Props) {
           </span>
         </div>
 
-        {/* Reference */}
         <div className="space-y-1">
           <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider">
             {dict?.exams.editExam.expression.item.reference}

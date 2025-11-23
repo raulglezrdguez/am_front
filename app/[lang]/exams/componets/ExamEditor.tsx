@@ -1,14 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { FaSave, FaSpinner, FaPlusSquare } from "react-icons/fa";
+import { FaSave, FaSpinner } from "react-icons/fa";
 
 import ErrorMessage from "@/components/ErrorMessage";
 import { Exam, QuestionInput } from "@/lib/types/exam";
-import { Answer, Operator } from "@/lib/types/exam_enums";
 import Expressions from "./Expressions";
+import Questions from "./Questions";
 import { toast } from "sonner";
-import { uid } from "@/lib/utils/utils";
 import useDictionary from "@/lib/hooks/useDictionary";
 
 export default function ExamEditor({
@@ -34,38 +33,9 @@ export default function ExamEditor({
   );
   const [isPublic, setIsPublic] = useState(!!initialExam?.public);
 
-  const [questions, setQuestions] = useState(
+  const [questions, setQuestions] = useState<QuestionInput[]>(
     (initialExam?.questions ?? []).map((q) => ({ ...q }))
   );
-
-  const addQuestion = () => {
-    setQuestions((q) => [
-      ...q,
-      {
-        id: uid(),
-        text: "",
-        answer: Answer.RADIO,
-        reference: "",
-        expression: {
-          id: "",
-          label: "",
-          operator: Operator.EQ,
-          value: "",
-          variable: "",
-          reference: "",
-        },
-        answers: [],
-      } as QuestionInput,
-    ]);
-  };
-
-  const removeQuestion = (id: string) => {
-    setQuestions((q) => q.filter((x) => x.id !== id));
-  };
-
-  const updateQuestion = (id: string, patch: QuestionInput) => {
-    setQuestions((q) => q.map((x) => (x.id === id ? { ...x, ...patch } : x)));
-  };
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,6 +49,7 @@ export default function ExamEditor({
       description,
       year,
       public: isPublic,
+      questions,
     };
 
     try {
@@ -210,60 +181,15 @@ export default function ExamEditor({
           </button>
         </div>
         <Expressions
-          examId={initialExam?._id}
+          examId={initialExam?._id ?? ""}
           expressions={initialExam?.expression}
           setError={setError}
         />
-        <div className="border-t pt-4">
-          <h2 className="font-semibold">Preguntas</h2>
-          {questions.map((q: QuestionInput) => (
-            <div key={q.id} className="p-2 border mb-2">
-              <div>
-                <input
-                  className="border p-1 w-full"
-                  value={q.text || ""}
-                  onChange={(e) =>
-                    updateQuestion(q.id, { ...q, text: e.target.value })
-                  }
-                  placeholder="Texto de la pregunta"
-                />
-              </div>
-              <div className="mt-2 flex gap-2">
-                <select
-                  className="border p-1 w-24"
-                  value={q.answer}
-                  onChange={(e) =>
-                    updateQuestion(q.id, {
-                      ...q,
-                      answer: e.target.value as Answer,
-                    })
-                  }
-                >
-                  {Object.values(Answer).map((ans) => (
-                    <option key={ans} value={ans}>
-                      {ans}
-                    </option>
-                  ))}
-                </select>
-                <button
-                  type="button"
-                  onClick={() => removeQuestion(q.id)}
-                  className="text-red-600"
-                >
-                  Eliminar
-                </button>
-              </div>
-            </div>
-          ))}
-          <button
-            type="button"
-            onClick={addQuestion}
-            className="px-3 py-3 bg-green-800/50 text-gray-100 hover:cursor-pointer hover:bg-green-800/80"
-            aria-label="add question"
-          >
-            <FaPlusSquare size={24} />
-          </button>
-        </div>
+        <Questions
+          examId={initialExam?._id ?? ""}
+          questions={questions}
+          onChange={(q) => setQuestions(q)}
+        />
       </form>
     </>
   ) : null;

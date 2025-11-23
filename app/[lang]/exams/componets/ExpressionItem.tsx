@@ -25,7 +25,7 @@ const ExpressionItem = ({
   return edit ? (
     <ExpressionEdit
       ex={ex}
-      removeExpression={removeExpression}
+      cancel={() => setEdit(false)}
       saveExpression={handleSaveExpression}
       updateExpression={updateExpression}
     />

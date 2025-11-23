@@ -8,20 +8,20 @@ import {
   getOperatorText,
   parseValue,
 } from "@/lib/utils/expression";
-import { FaSave, FaTrash } from "react-icons/fa";
+import { FaSave, FaTimes } from "react-icons/fa";
 
 type Props = {
   ex: ExpressionInput;
   updateExpression: (id: string, patch: Partial<ExpressionInput>) => void;
   saveExpression: (id: string) => void;
-  removeExpression: (id: string) => void;
+  cancel: () => void;
 };
 
 export default function ExpressionEdit({
   ex,
   updateExpression,
   saveExpression,
-  removeExpression,
+  cancel,
 }: Props) {
   const { dict } = useDictionary();
 
@@ -123,12 +123,12 @@ export default function ExpressionEdit({
 
           <button
             type="button"
-            onClick={() => removeExpression(ex.id)}
+            onClick={cancel}
             className="text-red-600 hover:bg-red-50 p-2 rounded transition-colors"
-            aria-label="Eliminar"
-            title="Eliminar"
+            aria-label="Cancel"
+            title="Cancel"
           >
-            <FaTrash size={24} />
+            <FaTimes size={24} />
           </button>
         </div>
       </div>
