@@ -12,6 +12,7 @@ import { Answer, Operator } from "@/lib/types/exam_enums";
 import { displayValue, parseValue } from "@/lib/utils/expression";
 import { z } from "zod";
 import { toast } from "sonner";
+import useDictionary from "@/lib/hooks/useDictionary";
 
 const AnswerOptionSchema = z.object({
   id: z.string(),
@@ -48,6 +49,8 @@ type Props = {
 };
 
 export default function QuestionEdit({ question, onSave, onCancel }: Props) {
+  const { dict } = useDictionary();
+
   const [id, setId] = useState(question.id ?? "");
   const [text, setText] = useState(question.text ?? "");
   const [answerType, setAnswerType] = useState<QuestionInput["answer"]>(
@@ -105,7 +108,9 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
     <div className="p-2 border rounded-lg mb-2">
       <div className="bg-gray-800/50 backdrop-blur border border-gray-700 rounded-lg p-8 space-y-6">
         <div>
-          <label className={labelClasses}>Identificador</label>
+          <label className={labelClasses}>
+            {dict?.exams.questions.edit.identifier}
+          </label>
           <input
             type={"text"}
             className={inputClasses}
@@ -114,7 +119,9 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
           />
         </div>
         <div>
-          <label className={labelClasses}>Texto de la Pregunta</label>
+          <label className={labelClasses}>
+            {dict?.exams.questions.edit.text}
+          </label>
           <textarea
             rows={3}
             className={`${inputClasses} resize-none`}
@@ -124,7 +131,9 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className={labelClasses}>Tipo de Respuesta</label>
+            <label className={labelClasses}>
+              {dict?.exams.questions.edit.kind}
+            </label>
             <select
               className={inputClasses}
               value={answerType}
@@ -139,23 +148,27 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
           </div>
 
           <div>
-            <label className={labelClasses}>Referencia</label>
+            <label className={labelClasses}>
+              {dict?.exams.questions.edit.reference}
+            </label>
             <input
               type="text"
               className={inputClasses}
               value={reference}
               onChange={(e) => setReference(e.target.value)}
-              placeholder="Referencia única"
+              placeholder={dict?.exams.questions.edit.reference}
             />
           </div>
         </div>
         <div className="border-t border-gray-700 pt-6 space-y-4">
           <h3 className="text-xl font-semibold text-gray-200">
-            Definición de Expresión
+            {dict?.exams.questions.edit.expression}
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <div>
-              <label className={labelClasses}>Variable (Ej. Puntos)</label>
+              <label className={labelClasses}>
+                {dict?.exams.questions.edit.variable}
+              </label>
               <input
                 type="text"
                 className={inputClasses}
@@ -163,12 +176,14 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
                 onChange={(e) =>
                   setExpression({ ...expression, variable: e.target.value })
                 }
-                placeholder="Etiqueta"
+                placeholder={dict?.exams.questions.edit.variable}
               />
             </div>
 
             <div>
-              <label className={labelClasses}>Operador</label>
+              <label className={labelClasses}>
+                {dict?.exams.questions.edit.operator}
+              </label>
               <select
                 className={inputClasses}
                 value={expression.operator}
@@ -192,7 +207,9 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
             </div>
 
             <div>
-              <label className={labelClasses}>Valor</label>
+              <label className={labelClasses}>
+                {dict?.exams.questions.edit.value}
+              </label>
               <input
                 type="text"
                 className={inputClasses}
@@ -203,13 +220,15 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
                     value: parseValue(e.target.value, expression.value),
                   })
                 }
-                placeholder="Valor"
+                placeholder={dict?.exams.questions.edit.value}
               />
             </div>
           </div>
         </div>
         <div className="border-t border-gray-700 pt-6 space-y-4">
-          <h3 className="text-xl font-semibold text-gray-200">Respuestas</h3>
+          <h3 className="text-xl font-semibold text-gray-200">
+            {dict?.exams.questions.edit.answers}
+          </h3>
           <div className="space-y-3">
             {answers.map((ans) => (
               <div
@@ -223,7 +242,7 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
                   onChange={(e) =>
                     updateAnswer(ans.id, { value: e.target.value })
                   }
-                  placeholder="Valor"
+                  placeholder={dict?.exams.questions.edit.value}
                 />
                 <input
                   type="text"
@@ -232,13 +251,13 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
                   onChange={(e) =>
                     updateAnswer(ans.id, { content: e.target.value })
                   }
-                  placeholder="Respuesta"
+                  placeholder={dict?.exams.questions.edit.answer}
                 />
                 <button
                   type="button"
                   onClick={() => removeAnswer(ans.id)}
                   className="text-red-500 hover:text-red-400 p-2 rounded-full transition duration-150 ease-in-out self-end md:self-center"
-                  aria-label="Eliminar opción"
+                  aria-label="Remove option"
                 >
                   <FaTrash size={20} />
                 </button>

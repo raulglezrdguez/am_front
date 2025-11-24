@@ -70,6 +70,31 @@
           "value": "Wert"
         }
       }
+    },
+    "questions": {
+      "label": "Fragen",
+      "saveError": "Fehler beim Speichern der Frage!",
+      "saveSuccess": "Frage gespeichert!",
+      "updateError": "Fehler beim Aktualisieren der Frage!",
+      "updateSuccess": "Frage aktualisiert!",
+      "card": {
+        "text": "Text",
+        "type": "Typ",
+        "expression": "Ausdrücke",
+        "reference": "Referenz"
+      },
+      "edit": {
+        "identifier": "Kennung",
+        "text": "Fragetext",
+        "kind": "Antworttyp",
+        "reference": "Referenz",
+        "expression": "Ausdrucksdefinition",
+        "variable": "Variable",
+        "operator": "Operator",
+        "value": "Wert",
+        "answers": "Antworten",
+        "answer": "Antwort"
+      }
     }
   },
   "loading": "Wird geladen..."

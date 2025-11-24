@@ -70,6 +70,31 @@
           "value": "Value"
         }
       }
+    },
+    "questions": {
+      "label": "Questions",
+      "saveError": "Error saving question!",
+      "saveSuccess": "Question saved!",
+      "updateError": "Error updating question!",
+      "updateSuccess": "Question updated!",
+      "card": {
+        "text": "Text",
+        "type": "Type",
+        "expression": "Expressions",
+        "reference": "Reference"
+      },
+      "edit": {
+        "identifier": "Identifier",
+        "text": "Question text",
+        "kind": "Answer kind",
+        "reference": "Reference",
+        "expression": "Expressions definition",
+        "variable": "Variable",
+        "operator": "Operator",
+        "value": "Value",
+        "answers": "Answers",
+        "answer": "Answer"
+      }
     }
   },
   "loading": "Loading..."

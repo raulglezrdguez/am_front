@@ -70,6 +70,31 @@
           "value": "Valore"
         }
       }
+    },
+    "questions": {
+      "label": "Domande",
+      "saveError": "Errore nel salvataggio della domanda!",
+      "saveSuccess": "Domanda salvata!",
+      "updateError": "Errore nell'aggiornamento della domanda!",
+      "updateSuccess": "Domanda aggiornata!",
+      "card": {
+        "text": "Testo",
+        "type": "Tipo",
+        "expression": "Espressioni",
+        "reference": "Riferimento"
+      },
+      "edit": {
+        "identifier": "Identificatore",
+        "text": "Testo della domanda",
+        "kind": "Tipo di risposta",
+        "reference": "Riferimento",
+        "expression": "Definizione delle espressioni",
+        "variable": "Variabile",
+        "operator": "Operatore",
+        "value": "Valore",
+        "answers": "Risposte",
+        "answer": "Risposta"
+      }
     }
   },
   "loading": "Caricamento..."

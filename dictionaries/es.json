@@ -70,6 +70,31 @@
           "value": "Valor"
         }
       }
+    },
+    "questions": {
+      "label": "Preguntas",
+      "saveError": "¡Error al guardar la pregunta!",
+      "saveSuccess": "¡Pregunta guardada!",
+      "updateError": "¡Error al actualizar la pregunta!",
+      "updateSuccess": "¡Pregunta actualizada!",
+      "card": {
+        "text": "Texto",
+        "type": "Tipo",
+        "expression": "Expresiones",
+        "reference": "Referencia"
+      },
+      "edit": {
+        "identifier": "Identificador",
+        "text": "Texto de la pregunta",
+        "kind": "Tipo de respuesta",
+        "reference": "Referencia",
+        "expression": "Definición de expresiones",
+        "variable": "Variable",
+        "operator": "Operador",
+        "value": "Valor",
+        "answers": "Respuestas",
+        "answer": "Respuesta"
+      }
     }
   },
   "loading": "Cargando..."

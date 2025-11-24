@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { FaPlusSquare } from "react-icons/fa";
 
 import { QuestionInput } from "@/lib/types/exam";
@@ -56,12 +56,11 @@ export default function Questions({ examId, questions, onChange }: Props) {
 
     if (!res.ok) {
       const txt = await res.text();
-      // throw new Error(txt || dict?.exams.editExam.question.saveError);
-      throw new Error(txt || "Error saving question");
+      throw new Error(txt || dict?.exams.questions.saveError);
     }
 
     // toast.success(dict?.exams.editExam.expression.saveSuccess);
-    toast.success("Question created!");
+    toast.success(dict?.exams.questions.saveSuccess);
 
     setLocalQuestions((s) => {
       const n = [...s, next];
@@ -79,20 +78,19 @@ export default function Questions({ examId, questions, onChange }: Props) {
   const updateQuestion = async (id: string, patch: Partial<QuestionInput>) => {
     const body = removeTypename(patch);
 
-    const res = await fetch(`/api/exams/${examId}/question/id`, {
+    const res = await fetch(`/api/exams/${examId}/question/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
 
     if (!res.ok) {
-      const txt = await res.text();
-      // throw new Error(txt || dict?.exams.editExam.question.saveError);
-      throw new Error(txt || "Error updating question");
+      // const txt = await res.text();
+      throw new Error(dict?.exams.questions.updateError);
     }
 
     // toast.success(dict?.exams.editExam.expression.saveSuccess);
-    toast.success("Question updated!");
+    toast.success(dict?.exams.questions.updateSuccess);
 
     setLocalQuestions((s) => {
       const n = s.map((q) => (q.id === id ? { ...q, ...patch } : q));
@@ -102,7 +100,9 @@ export default function Questions({ examId, questions, onChange }: Props) {
 
   return (
     <div className="border-t pt-4" data-exam-id={examId}>
-      <h2 className="text-2xl font-bold text-gray-100">Preguntas</h2>
+      <h2 className="text-2xl font-bold text-gray-100">
+        {dict?.exams.questions.label}
+      </h2>
       {localQuestions.map((q) => (
         <QuestionItem
           key={q.id}

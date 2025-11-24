@@ -59,10 +59,10 @@ export async function POST(
 
 export async function PUT(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string; idQuestion: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id, idQuestion } = await params;
 
     const cookieStore = await cookies();
     const sessionCookie = cookieStore.get("session")?.value;
@@ -81,7 +81,7 @@ export async function PUT(
 
     const result = await apolloClient.mutate({
       mutation: UPDATE_EXAM_QUESTION_MUTATION,
-      variables: { id, input },
+      variables: { id, questionId: idQuestion, input },
     });
 
     const updated =

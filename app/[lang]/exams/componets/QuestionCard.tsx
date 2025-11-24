@@ -1,6 +1,6 @@
 "use client";
 
-// import useDictionary from "@/lib/hooks/useDictionary";
+import useDictionary from "@/lib/hooks/useDictionary";
 import { QuestionInput } from "@/lib/types/exam";
 import { getOperatorText } from "@/lib/utils/expression";
 import { FaEdit, FaTrash } from "react-icons/fa";
@@ -12,7 +12,7 @@ type Props = {
 };
 
 const QuestionCard = ({ question, onDelete, onEdit }: Props) => {
-  // const { dict } = useDictionary();
+  const { dict } = useDictionary();
 
   const handleDelete = () => {
     if (onDelete) {
@@ -53,7 +53,7 @@ const QuestionCard = ({ question, onDelete, onEdit }: Props) => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="space-y-1">
           <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider">
-            {"texto"}
+            {dict?.exams.questions.card.text}
           </span>
           <span className="text-gray-200 font-mono text-sm bg-gray-700/30 px-2 py-1 rounded">
             {question.text || "-"}
@@ -62,7 +62,7 @@ const QuestionCard = ({ question, onDelete, onEdit }: Props) => {
 
         <div className="space-y-1">
           <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider">
-            {"tipo"}
+            {dict?.exams.questions.card.type}
           </span>
           <span className="text-gray-200 font-mono text-sm bg-gray-700/30 px-2 py-1 rounded">
             {question.answer || "-"}
@@ -71,7 +71,7 @@ const QuestionCard = ({ question, onDelete, onEdit }: Props) => {
 
         <div className="space-y-1">
           <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider">
-            {"expresion"}
+            {dict?.exams.questions.card.expression}
           </span>
           <span className="text-gray-200 font-mono text-sm bg-gray-700/30 px-2 py-1 rounded">
             {`${question.expression.variable} ${getOperatorText(
@@ -82,7 +82,7 @@ const QuestionCard = ({ question, onDelete, onEdit }: Props) => {
 
         <div className="space-y-1">
           <span className="block text-xs font-medium text-gray-400 uppercase tracking-wider">
-            {"referencia"}
+            {dict?.exams.questions.card.reference}
           </span>
           <span className="text-gray-200 font-mono text-sm bg-gray-700/30 px-2 py-1 rounded">
             {question.reference || "-"}

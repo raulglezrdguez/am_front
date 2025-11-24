@@ -75,6 +75,31 @@ export type Dictionary = {
         };
       };
     };
+    questions: {
+      label: string;
+      saveError: string;
+      saveSuccess: string;
+      updateError: string;
+      updateSuccess: string;
+      card: {
+        text: string;
+        type: string;
+        expression: string;
+        reference: string;
+      };
+      edit: {
+        identifier: string;
+        text: string;
+        kind: string;
+        reference: string;
+        expression: string;
+        variable: string;
+        operator: string;
+        value: string;
+        answers: string;
+        answer: string;
+      };
+    };
   };
   loading: string;
 };

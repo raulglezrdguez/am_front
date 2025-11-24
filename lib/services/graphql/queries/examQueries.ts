@@ -198,8 +198,12 @@ export const CREATE_EXAM_QUESTION_MUTATION = gql`
 `;
 
 export const UPDATE_EXAM_QUESTION_MUTATION = gql`
-  mutation updateExamQuestion($id: ID!, $input: QuestionInput!) {
-    updateExamQuestion(id: $id, input: $input) {
+  mutation updateExamQuestionId(
+    $id: ID!
+    $questionId: String!
+    $input: QuestionInput!
+  ) {
+    updateExamQuestionId(id: $id, questionId: $questionId, input: $input) {
       _id
       questions {
         id
