@@ -3,13 +3,14 @@
 import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useAuthStore } from "@/lib/stores/user";
+import { Lang } from "@/types/languages";
 
 export default function RequireAuth({
   children,
   lang,
 }: {
   children: React.ReactNode;
-  lang: string;
+  lang: Lang;
 }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated);
   const router = useRouter();
