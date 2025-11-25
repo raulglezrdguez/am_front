@@ -38,6 +38,16 @@ export async function generateMetadata({
   };
 }
 
+export async function generateStaticParams() {
+  return [
+    { lang: "en" },
+    { lang: "es" },
+    { lang: "de" },
+    { lang: "fr" },
+    { lang: "it" },
+  ];
+}
+
 export default async function RootLayout({
   children,
   params,
