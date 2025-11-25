@@ -1,13 +1,58 @@
 import { gql } from "@apollo/client";
 import { cookies } from "next/headers";
 import { createServerApolloClient } from "../serverClient";
-import { ExamResponse, ExamsResponse } from "@/lib/types/exam";
+import { ExamResponse, ExamsResponse, MyExamsResponse } from "@/lib/types/exam";
 
 export const GET_EXAMS = gql`
   # query GetExams($limit: Int = 20, $offset: Int = 0) {
   #   exams(limit: $limit, offset: $offset) {
   query GetExams {
     exams {
+      _id
+      title
+      subtitle
+      instructions
+      description
+      public
+      author {
+        name
+        email
+      }
+      year
+      expression {
+        id
+        operator
+        value
+        label
+        reference
+        variable
+      }
+      questions {
+        id
+        text
+        expression {
+          id
+          operator
+          value
+          label
+          reference
+          variable
+        }
+        answer
+        reference
+        answers {
+          id
+          value
+          content
+        }
+      }
+    }
+  }
+`;
+
+export const MY_EXAMS = gql`
+  query myExams {
+    myExams {
       _id
       title
       subtitle
@@ -276,6 +321,42 @@ export async function getExams() {
     });
 
     const exams = data?.exams || [];
+
+    return { exams };
+  } catch (error) {
+    const errorObj = error as Record<string, unknown>;
+    if (errorObj.code === "auth/argument-error") {
+      return { exams: [], error: { message: "Invalid session", status: 401 } };
+    }
+
+    return {
+      exams: [],
+      error: {
+        message: (error as Error).message || "Internal server error",
+        status: 500,
+      },
+    };
+  }
+}
+
+export async function getMyExams() {
+  try {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("session")?.value;
+
+    // Create Apollo client with token (if available)
+    const serverClient = createServerApolloClient(token);
+
+    const { data } = await serverClient.query<MyExamsResponse>({
+      query: MY_EXAMS,
+      context: {
+        fetchOptions: {
+          next: { revalidate: 0 },
+        },
+      },
+    });
+
+    const exams = data?.myExams || [];
 
     return { exams };
   } catch (error) {

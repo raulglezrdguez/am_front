@@ -68,3 +68,7 @@ export interface ExamsResponse {
 export interface ExamResponse {
   exam: Exam;
 }
+
+export interface MyExamsResponse {
+  myExams: Exam[];
+}
