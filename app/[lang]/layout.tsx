@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/sonner";
 
 import "../globals.css";
-import Particles from "@/components/Particles";
+import Particles from "@/components/ParticlesBackground";
 import type { Lang } from "@/types/languages";
 import { getDictionary } from "./dictionaries";
 import Header from "@/components/Header";
@@ -12,9 +12,11 @@ import RequireAuth from "@/components/RequireAuth";
 
 const geist = localFont({
   src: "../../public/fonts/Geist.ttf",
+  variable: "--font-geist-sans",
 });
 const geistMono = localFont({
   src: "../../public/fonts/GeistMono.ttf",
+  variable: "--font-geist-mono",
 });
 
 export async function generateMetadata({
@@ -56,10 +58,7 @@ export default async function RootLayout({
 
   return (
     <html lang={lang}>
-      <body
-        // className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        className={`${geist.className} ${geistMono.className} antialiased`}
-      >
+      <body className={`${geist.variable} ${geistMono.variable} antialiased`}>
         <Particles
           particleColors={["#008000"]}
           particleCount={200}

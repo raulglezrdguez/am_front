@@ -400,11 +400,11 @@ export async function getExam(id: string) {
   } catch (error) {
     const errorObj = error as Record<string, unknown>;
     if (errorObj.code === "auth/argument-error") {
-      return { exams: [], error: { message: "Invalid session", status: 401 } };
+      return { exam: null, error: { message: "Invalid session", status: 401 } };
     }
 
     return {
-      exams: [],
+      exams: null,
       error: {
         message: (error as Error).message || "Internal server error",
         status: 500,

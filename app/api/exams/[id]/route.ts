@@ -5,7 +5,7 @@ import { UPDATE_EXAM_PROPERTIES_MUTATION } from "@/lib/services/graphql/queries/
 
 export async function PUT(
   req: Request,
-  { params }: { params: Promise<{ id: string }> }
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
     const { id } = await params;
@@ -38,54 +38,23 @@ export async function PUT(
     const updated =
       (
         result?.data as {
-          updateExam: {
+          updateExamProperties: {
             _id: string;
             title: string;
             subtitle: string;
             instructions: string;
             description: string;
-            public: string;
-            year: string;
-            // author: {
-            //   name: string;
-            //   email: string;
-            // };
-            // expression: {
-            //   id: string;
-            //   operator: string;
-            //   value: string;
-            //   label: string;
-            //   reference: string;
-            //   variable: string;
-            // };
-            // questions: {
-            //   id: string;
-            //   text: string;
-            //   expression: {
-            //     id: string;
-            //     operator: string;
-            //     value: string;
-            //     label: string;
-            //     reference: string;
-            //     variable: string;
-            //   };
-            //   answer: string;
-            //   reference: string;
-            //   answers: {
-            //     id: string;
-            //     value: string;
-            //     content: string;
-            //   };
-            // };
+            public: boolean;
+            year: number;
           };
         }
-      )?.updateExam ?? null;
+      )?.updateExamProperties ?? null;
 
     return NextResponse.json({ data: updated });
   } catch (err: unknown) {
     return NextResponse.json(
       { error: (err as Error)?.message ?? String(err) },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

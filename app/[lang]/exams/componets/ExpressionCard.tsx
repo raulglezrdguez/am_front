@@ -23,6 +23,7 @@ export default function ExpressionCard({ ex, onEdit, onDelete }: Props) {
         <div className="flex gap-8 ml-4">
           {onEdit && (
             <button
+              type="button"
               onClick={() => onEdit(ex.id)}
               className="text-green-400 hover:bg-green-800/80 p-2 rounded-lg transition-colors"
               aria-label="Edit"
@@ -33,6 +34,7 @@ export default function ExpressionCard({ ex, onEdit, onDelete }: Props) {
           )}
           {onDelete && (
             <button
+              type="button"
               onClick={() => onDelete(ex.id)}
               className="text-red-500 hover:bg-red-800/80 p-2 rounded-lg transition-colors"
               aria-label="Remove"

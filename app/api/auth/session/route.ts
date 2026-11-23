@@ -30,13 +30,19 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { success: true, uid: decodedToken.uid },
-      { status: 200 }
+      { status: 200 },
     );
   } catch (error: unknown) {
     console.error("Session creation error:", error);
     return NextResponse.json(
       { error: (error as Error).message || "Failed to create session" },
-      { status: 401 }
+      { status: 401 },
     );
   }
+}
+
+export async function DELETE() {
+  const cookieStore = await cookies();
+  cookieStore.delete("session");
+  return NextResponse.json({ success: true });
 }

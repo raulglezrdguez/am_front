@@ -1,3 +1,5 @@
+"use clent";
+
 import { ExpressionInput } from "@/lib/types/exam";
 import { useState } from "react";
 import ExpressionEdit from "./ExpressionEdit";

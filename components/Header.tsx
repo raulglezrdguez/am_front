@@ -36,6 +36,7 @@ function Header({}) {
 
   const handleLogout = async () => {
     setMenuOpen(false);
+    await fetch("/api/auth/session", { method: "DELETE" });
     await signOut(auth);
     clearUser();
   };

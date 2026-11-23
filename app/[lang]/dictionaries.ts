@@ -1,4 +1,4 @@
-import type { Lang } from "@/types/languages";
+import type { Dictionary, Lang } from "@/types/languages";
 
 const dictionaries = {
   en: () => import("@/dictionaries/en.json").then((module) => module.default),
@@ -8,5 +8,7 @@ const dictionaries = {
   de: () => import("@/dictionaries/de.json").then((module) => module.default),
 };
 
-export const getDictionary = async (locale: Lang) =>
-  await dictionaries[locale || "en"]();
+export const getDictionary = async (locale: Lang): Promise<Dictionary> => {
+  const loader = dictionaries[locale] ?? dictionaries.en;
+  return (await loader()) as Dictionary;
+};

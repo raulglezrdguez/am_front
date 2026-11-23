@@ -31,20 +31,6 @@ export function proxy(req: NextRequest) {
   const url = req.nextUrl.clone();
   const pathname = url.pathname;
 
-  // dentro de middleware, antes de redirigir -> permitir callbacks OAuth
-  const oauthParams = [
-    "state",
-    "code",
-    "error",
-    "oauth_token",
-    "firebaseError",
-  ];
-  for (const p of oauthParams) {
-    if (url.searchParams.has(p)) {
-      return NextResponse.next();
-    }
-  }
-
   // If the path already starts with a supported locale, don't redirect
   const firstSegment = pathname.split("/")[1];
   if (firstSegment && SUPPORTED_LOCALES.includes(firstSegment as Lang)) {
@@ -55,6 +41,7 @@ export function proxy(req: NextRequest) {
   if (pathname === "/" || pathname === "") {
     const locale = getPreferredLocale(req);
     url.pathname = `/${locale}`;
+    // url.clone() conserva searchParams: los params OAuth viajan a /{locale}
     return NextResponse.redirect(url);
   }
 

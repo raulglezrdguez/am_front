@@ -54,7 +54,7 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
   const [id, setId] = useState(question.id ?? "");
   const [text, setText] = useState(question.text ?? "");
   const [answerType, setAnswerType] = useState<QuestionInput["answer"]>(
-    question.answer
+    question.answer,
   );
   const [reference, setReference] = useState(question.reference ?? "");
 
@@ -88,7 +88,6 @@ export default function QuestionEdit({ question, onSave, onCancel }: Props) {
       answers,
     };
 
-    QuestionSchema.parse(updated);
     const parseResult = QuestionSchema.safeParse(updated);
     if (!parseResult.success) {
       const zodError = parseResult.error;

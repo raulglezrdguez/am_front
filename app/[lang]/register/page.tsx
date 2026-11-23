@@ -46,7 +46,7 @@ export default function RegisterPage() {
       if (code === "auth/email-already-in-use") {
         setError(
           dict?.register.accountExistsError ||
-            "An account already exists with this email"
+            "An account already exists with this email",
         );
       } else if (code === "auth/weak-password") {
         setError(dict?.register.passwordTooWeek || "Password is too weak");
@@ -111,39 +111,3 @@ export default function RegisterPage() {
     </div>
   );
 }
-
-/**
- * 
- * "use client";
-
-import { useDictionary } from "@/lib/hooks/useDictionary";
-import { useAuthStore } from "@/lib/stores/user";
-import { useEffect, useState } from "react";
-
-export default function ExamsPage() {
-  const { dict } = useDictionary();
-  const user = useAuthStore((state) => state.user);
-  const [exams, setExams] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchExams = async () => {
-      const token = await user?.getIdToken(); // Firebase Auth token
-      
-      // Usa apolloServerClient o cliente con contexto token
-      const { data } = await apolloServerClient.query({
-        query: GET_EXAMS,
-        context: { token },
-      });
-      
-      setExams(data?.exams || []);
-      setLoading(false);
-    };
-
-    if (user) fetchExams();
-  }, [user]);
-
-  if (loading) return <div>Loading...</div>;
-  return <ExamsList exams={exams} />;
-}
- */
